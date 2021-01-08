@@ -16,7 +16,7 @@ function read_OCO_file(fname::String)
     out = Dict()
 
     # Create fake data
-    N = 100000
+    N = 1000000
 
     out["lon"] = rand(N) .* 360 .- 180
     out["lat"] = rand(N) .* 180 .- 90
@@ -105,6 +105,11 @@ function OCOSampling(target_lon::Number, target_lat::Number,
     scenearray = Scene[]
 
     tmp_dict = read_OCO_file("")
+    # TODO
+    # build a full catalogue of ALL valid OCO-2 or OCO-3
+    # scenes and store them in a compact HDF5 file to be
+    # used here. So we can actually take the full record
+    # of *ALL* OCO-2/3 scenes.
 
     # Go through scenes and create scene and location objects
     for i in 1:length(tmp_dict["lon"])
@@ -146,7 +151,11 @@ function OCOSampling(target_lon::Number, target_lat::Number,
     )
 
     # Create OCOSampling object and return
+
+    info = "OCO-type sampling with radius $(radius)km centered at ($(target_lon), $(target_lat))."
+
     return OCOSampling(
+        info,
         locarray[mask],
         scenearray[mask]
     )

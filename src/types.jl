@@ -1,6 +1,6 @@
 # Standard library
 using Dates
-
+import Base: length
 
 """
     Geolocation (lon, lat)
@@ -74,6 +74,33 @@ struct Scene
     albedo::Number
 end
 
+"""
+    Aggregate
+
+Represents a SIF aggregate
+"""
+struct Aggregate
+    # Number of measurements in aggregate
+    N::Int
+    # Start time
+    start_time::DateTime
+    # End time
+    end_time::DateTime
+    # SIF
+    SIF::Array{<:Number, 1}
+    # SIF single-sounding uncertainty
+    SIF_ucert::Array{<:Number, 1}
+    # solar zenith angle
+    SZA::Array{<:Number, 1}
+    # viewing zenith angle
+    VZA::Array{<:Number, 1}
+    # NIRv
+    NIRv::Array{<:Number, 1}
+    # Surface albedo (at the SIF wavelength)
+    albedo::Array{<:Number, 1}
+end
+
+
 
 """
     Some design thoughts on the various sampling types
@@ -91,23 +118,35 @@ adds a repetition.
 
 
 """
-abstract type Sampling end
+abstract type SpatialSampling end
 
+"""
+    length (SS)
 
+# Arguments
+- 'SS::SpatialSampling': SpatialSampling object
+
+# Returns
+- 'Int': Number of scenes (not scene locations) within the sampling
+"""
+function length(SS::SpatialSampling)
+    return length(SS.scenes)
+end
 
 
 # GeoCarb-type sampling for a full day
-struct GeostationaryFullDaySampling <: Sampling
+struct GeostationaryFullDaySampling<:SpatialSampling
 
 end
 
 # Think "repeated Granule"
-struct GeostationaryIntensiveSampling <: Sampling
+struct GeostationaryIntensiveSampling<:SpatialSampling
 
 end
 
 # OCO-2/3 type sampling pattern (this uses real data)
-struct OCOSampling <: Sampling
+struct OCOSampling<:SpatialSampling
+    info::String
     # Scene locations obtained from files
     locations::Array{Geolocation, 1}
 
@@ -116,3 +155,22 @@ struct OCOSampling <: Sampling
     # dimensions than scenelocs
     scenes::Array{Scene, 1}
 end
+
+
+
+abstract type TemporalSampling end
+
+struct RegularTemporalSampling <: TemporalSampling
+    # Time in [s] between two aggregation boundaries
+    period::Number
+end
+
+function WeeklySampling(interval::Number)
+    # There are 60 * 60 * 24 * 7 = 604800 seconds in a week
+    return RegularTemporalSampling(604800 * interval)
+end
+
+
+
+#struct LightResponseCurve
+#end

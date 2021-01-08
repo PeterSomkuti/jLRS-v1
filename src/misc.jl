@@ -80,3 +80,12 @@ function mask_locations_within_radius(lon, lat, radius, locations::Array{Geoloca
     return mask
 
 end
+
+"""
+
+
+"""
+function recalculate_solar_angles!(scene::Scene)
+
+
+end
