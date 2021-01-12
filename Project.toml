@@ -1,0 +1,24 @@
+name = "jLRS"
+uuid = "41fdb1b4-3aa1-4c14-b8cd-1b24579015f6"
+authors = ["Peter Somkuti <psomkuti@colostate.edu>"]
+version = "0.1.0"
+
+[deps]
+AstroLib = "c7932e45-9af1-51e7-9da9-f004cd3a462b"
+Dates = "ade2ca70-3891-5945-98fb-dc099432e06a"
+Glob = "c27321d9-0574-5035-807b-f59d2c89b15c"
+HDF5 = "f67ccb44-e63f-5c2f-98bd-6dc0ccc4ba2f"
+NetCDF = "30363a11-5582-574a-97bb-aa9a979735b9"
+Plotly = "58dd65bb-95f3-509e-9936-c39a10fdeae7"
+Printf = "de0858da-6303-5e67-8744-51eddeeeb8d7"
+Proj4 = "9a7e659c-8ee8-5706-894e-f68f43bc57ea"
+UnicodePlots = "b8865327-cd53-5732-bb35-84acbb429228"
+
+[compat]
+julia = "^1"
+
+[extras]
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+
+[targets]
+test = ["Test"]
