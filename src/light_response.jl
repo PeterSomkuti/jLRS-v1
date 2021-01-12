@@ -1,94 +1,160 @@
 
 """
-    aggregate_scenes(scenes, TS)
+    compute_2d_boundaries_indices
+
+Computes the boundaries and indices for a regular spatial sampling,
+think e.g. 2x2 degree grid boxes.
+
+"""
+
+function compute_2d_boundaries_indices(lons::Array{<:Number, 1},
+                                       lats::Array{<:Number, 1},
+                                       SS::RegularGridCells)
+
+    return calculate_regular_2d_histogram(
+        lons, lats,
+        SS.delta_lon,
+        SS.delta_lat
+    )
+end
+
+
+"""
+    compute_2d_boundaries_indices
+
+Computes the boundaries and indices for a full ROI, i.e. no further
+aggregation and only one (maybe big) grid cell and all scenes fall
+into the same [1] grid cell.
+
+"""
+function compute_2d_boundaries_indices(lons::Array{<:Number, 1},
+                                       lats::Array{<:Number, 1},
+                                       SS::FullROI)
+
+    lon_grid = [minimum(lons), maximum(lons)]
+    lat_grid = [minimum(lats), maximum(lats)]
+    idx = repeat([1], length(lons))
+
+    return (lon_grid, lat_grid), idx
+end
+
+
+
+
+"""
+    aggregate_scenes(IS, SS, TS)
 
 This function will aggregate an array of scenes according to a
-regular time sampler.
+regular time sampler. Regular time sampling means "stick all scenes
+in a given regular time interval into a separate aggregation container".
+Classic example: collect in daily/weekly/monthly intervals.
 
 # Arguments
-- 'scenes::Array{Scene, 1}': Array of scenes
+- 'IS::InstrumentSampling': An instrument sampling object (contains the scenes)
+- 'SS::SpatialSampling': A spatial sampling object
 - 'TS::RegularTemporalSampling': Regular temporal sampling object
 
 # Returns
 - 'Array{Aggregate, 1}': aggregate objects
 
 """
-function aggregate_scenes(scenes::Array{Scene, 1}, TS::RegularTemporalSampling)
+function aggregate_scenes(IS::InstrumentSampling,
+                          SS::SpatialSampling,
+                          TS::RegularTemporalSampling)
+
+    # For empty instrument samplings, just return an empty container
+    if length(IS) == 0
+        return Aggregate[]
+    end
 
     # Just in case the scenes are not ordered in time, established ordering index
-
     # Perform the temporal aggregation according to TS
-    time_idx = sortperm([scenes[i].loctime.time for i in 1:length(scenes)])
+    time_idx = sortperm([IS.scenes[i].loctime.time for i in 1:length(IS)])
 
     # Extract first and last times
-    start_date = scenes[time_idx[1]].loctime.time
-    end_date = scenes[time_idx[end]].loctime.time
+    start_date = IS.scenes[time_idx[1]].loctime.time
+    end_date = IS.scenes[time_idx[end]].loctime.time
 
     # This is the time boundary grid
     time_boundary = collect(start_date:Dates.Second(TS.period):end_date)
 
+    # Compute spatial aggregation here
+    spatial_bound, spatial_idx = compute_2d_boundaries_indices(
+        (p -> p.loctime.location.lon).(IS.scenes),
+        (p -> p.loctime.location.lat).(IS.scenes),
+        SS
+    )
+
+    # This is an empty list of Aggregate objects, which
+    # we fill up in the next section of the code.
     aggregates = Aggregate[]
 
-    last_start_index = 1
-    for i in 1:length(time_boundary) - 1
+    # General idea:
+    # -------------
+    # Go through every unique spatial index, and perform a time aggregate
+    # on the subset of all scenes which fall into this spatial index. We
+    # then end up with a spatio-temporal aggregation according to SS and TS
 
-        agg_idx = Int[]
 
-        for j in last_start_index:length(scenes)
+    for ss_idx in unique(spatial_idx)
 
-            if (scenes[time_idx[j]].loctime.time >= time_boundary[i]) &
-                (scenes[time_idx[j]].loctime.time < time_boundary[i+1])
+        # Remember - spatial index can be of any arbitrary dimension, but
+        # will most likely be 1- or 2-dim tuple
 
-                # time_idx[j] belongs to aggregate bin bounded by
-                # time_boundary[i] and time_boundary[i+1]
+        # Run through all time bins
+        last_start_index = 1
+        for i in 1:length(time_boundary) - 1
 
-                # Save current index, so that next loop can start from here
-                last_start_index = j
+            agg_idx = Int[]
 
-                # Push this index into index list
-                push!(agg_idx, time_idx[j])
+            for j in last_start_index:length(IS)
 
+                if (IS.scenes[time_idx[j]].loctime.time >= time_boundary[i]) &
+                    (IS.scenes[time_idx[j]].loctime.time < time_boundary[i+1]) &
+                    (ss_idx == spatial_idx[j])
+
+                    # time_idx[j] belongs to aggregate bin bounded by
+                    # time_boundary[i] and time_boundary[i+1]
+
+                    # Thus, scene with index "j" belongs to spatial subset "ss_idx"
+                    # and temporal bin between time_boundary[i] and time_boundary[i+1]
+
+                    # Save current index, so that next iteration of the scene loop
+                    # can start from here
+                    last_start_index = j
+
+                    # Push this index into index list
+                    push!(agg_idx, time_idx[j])
+
+                end
             end
 
-        end
+            # Continue to next bin if empty
+            if length(agg_idx) == 0
+                continue
+            end
 
-        # Continue to next bin if empty
-        if length(agg_idx) == 0
-            continue
-        end
+            # Otherwise, create a new aggregate and
+            # push it into list
+            this_aggregate = Aggregate(
+                length(agg_idx),
+                agg_idx,
+                time_boundary[i],
+                time_boundary[i+1],
+                (p -> p.SIF).(IS.scenes[agg_idx]),
+                (p -> p.SIF_ucert).(IS.scenes[agg_idx]),
+                (p -> p.SZA).(IS.scenes[agg_idx]),
+                (p -> p.VZA).(IS.scenes[agg_idx]),
+                (p -> p.NIRv).(IS.scenes[agg_idx]),
+                (p -> p.albedo).(IS.scenes[agg_idx])
+            )
 
-        # Otherwise, create a new aggregate and
-        # push it into list
-        this_aggregate = Aggregate(
-            length(agg_idx),
-            time_boundary[i],
-            time_boundary[i+1],
-            (p -> p.SIF).(scenes[agg_idx]),
-            (p -> p.SIF_ucert).(scenes[agg_idx]),
-            (p -> p.SZA).(scenes[agg_idx]),
-            (p -> p.VZA).(scenes[agg_idx]),
-            (p -> p.NIRv).(scenes[agg_idx]),
-            (p -> p.albedo).(scenes[agg_idx])
-        )
+            push!(aggregates, this_aggregate)
 
-        push!(aggregates, this_aggregate)
-
-    end
+        end # This ends the temporal index loop
+    end # This ends the spatial index loop
 
     return aggregates
 
 end
 
-
-function calculate_light_response(SS::SpatialSampling, TS::TemporalSampling)
-
-    println("$(typeof(SS)), $(typeof(TS))")
-
-    println("Aggregating scenes")
-    aggregate_scenes(SS.scenes, TS)
-
-
-
-
-
-end

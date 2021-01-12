@@ -89,3 +89,46 @@ function recalculate_solar_angles!(scene::Scene)
 
 
 end
+
+
+"""
+    Function to return bin indices in one dimension, taken from:
+https://stackoverflow.com/questions/54879412/get-the-mapping-from-each-element-of-input-to-the-bin-of-the-histogram-in-julia
+
+"""
+binindices(edges, data) = searchsortedlast.(Ref(edges), data)
+
+"""
+
+Function to produce a 2D histogram which also returns the indices
+of the 2D grid in which certain coordinates fall into (stdlib Julia functions
+don't return the indices sadly, so we built our own)
+
+"""
+function calculate_regular_2d_histogram(lons, lats, delta_lon, delta_lat)
+
+    # Construct the lon and lat boundaries
+    # ------------------------------------
+
+    # The grids are constructed such that the space between first
+    # bin edge and the smallest data point is the same as the
+    # last bin edge and the largest data point.
+
+    Nlon = convert(Int, ceil((maximum(lons) - minimum(lons)) / delta_lon))
+    Nlat = convert(Int, ceil((maximum(lats) - minimum(lats)) / delta_lat))
+
+    lon_bin0 = (minimum(lons) + maximum(lons) - (Nlon) * delta_lon) / 2
+    lat_bin0 = (minimum(lats) + maximum(lats) - (Nlat) * delta_lat) / 2
+
+    lon_grid = collect(range(lon_bin0, step=delta_lon, length=Nlon+1))
+    lat_grid = collect(range(lat_bin0, step=delta_lat, length=Nlat+1))
+
+    # Assign to bin indices
+    lon_idx = binindices(lon_grid, lons)
+    lat_idx = binindices(lat_grid, lats)
+
+    cell_idx = collect(zip(lon_idx, lat_idx))
+
+    return (lon_grid, lat_grid), cell_idx
+
+end

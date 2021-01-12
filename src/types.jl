@@ -82,6 +82,8 @@ Represents a SIF aggregate
 struct Aggregate
     # Number of measurements in aggregate
     N::Int
+    # Scene indices, in case you want to refer back to other data
+    scene_idx::Array{Int, 1}
     # Start time
     start_time::DateTime
     # End time
@@ -118,34 +120,34 @@ adds a repetition.
 
 
 """
-abstract type SpatialSampling end
+abstract type InstrumentSampling end
 
 """
-    length (SS)
+    length (IS)
 
 # Arguments
-- 'SS::SpatialSampling': SpatialSampling object
+- 'IS::InstrumentSampling': InstrumentSampling object
 
 # Returns
 - 'Int': Number of scenes (not scene locations) within the sampling
 """
-function length(SS::SpatialSampling)
-    return length(SS.scenes)
+function length(IS::InstrumentSampling)
+    return length(IS.scenes)
 end
 
 
 # GeoCarb-type sampling for a full day
-struct GeostationaryFullDaySampling<:SpatialSampling
+struct GeostationaryFullDaySampling<:InstrumentSampling
 
 end
 
 # Think "repeated Granule"
-struct GeostationaryIntensiveSampling<:SpatialSampling
+struct GeostationaryIntensiveSampling<:InstrumentSampling
 
 end
 
 # OCO-2/3 type sampling pattern (this uses real data)
-struct OCOSampling<:SpatialSampling
+struct OCOSampling<:InstrumentSampling
     info::String
     # Scene locations obtained from files
     locations::Array{Geolocation, 1}
@@ -160,7 +162,8 @@ end
 
 abstract type TemporalSampling end
 
-struct RegularTemporalSampling <: TemporalSampling
+# Some regular temporal sampling, think "X days/weeks/months"
+struct RegularTemporalSampling<:TemporalSampling
     # Time in [s] between two aggregation boundaries
     period::Number
 end
@@ -171,6 +174,27 @@ function WeeklySampling(interval::Number)
 end
 
 
+# In case we want to investigate some more complex irregular
+# temporal samplings.
+# (e.g. correlations with periods of stable precipitation etc.)
+struct IrregularTemporalSampling<:TemporalSampling
+    time_boundaries::Array{DateTime, 1}
+end
 
-#struct LightResponseCurve
-#end
+
+
+abstract type SpatialSampling end
+
+# No further subsampling in spatial dimension
+# treat whole ROI of InstrumentSampling object
+# as one.
+struct FullROI<:SpatialSampling
+end
+
+# Regular X by Y grid cells in lon / lat
+struct RegularGridCells<:SpatialSampling
+    delta_lon::Number
+    delta_lat::Number
+end
+
+
