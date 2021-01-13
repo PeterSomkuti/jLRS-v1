@@ -1,5 +1,7 @@
 using Revise
 using BenchmarkTools
+using UnicodePlots
+
 using jLRS
 
 
@@ -11,17 +13,18 @@ using jLRS
 # Example 1:
 # Look at some location and how OCO-x samples in some radius of FoCo
 # ---------
+
 s1 = jLRS.OCOSampling(-105.0844, # target lon
                       40.5853, # target lat
-                      300, # radius in km
-                      "/data6/OCO3/SCF/TEST_B10215_STO_SRU_MEAS201028_DYn0112_DZ0116/2020/10/10/L1bSc")
+                      600, # radius in km
+                      "/data10/psomkuti/OCO_locations/oco3_locations_202007.h5")
 
 # Using the locations and samplings, produce a light response curve given some sampling
 weekly = jLRS.WeeklySampling(1)
 halfweekly = jLRS.WeeklySampling(0.5)
 
 noagg = jLRS.FullROI()
-bigagg = jLRS.RegularGridCells(1, 1)
+bigagg = jLRS.RegularGridCells(2, 2)
 
 # Perform the aggregation step
 agg1 = jLRS.aggregate_scenes(s1, noagg, weekly)

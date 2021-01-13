@@ -11,25 +11,21 @@ returns them as a dict.
 - 'Dict' : Dictionary containing the contents of the L1bSc or GeoSc file.
 """
 function read_OCO_file(fname::String)
-    println("Implement me!")
 
     out = Dict()
 
-    # Create fake data
-    N = 1000000
+    h5open(fname, "r") do h5
 
-    out["lon"] = rand(N) .* 360 .- 180
-    out["lat"] = rand(N) .* 180 .- 90
-    out["sza"] = rand(N) .* 90
-    out["vza"] = rand(N) .* 90
+        out["lon"] = h5["lon"][:]
+        out["lat"] = h5["lat"][:]
+        out["sza"] = h5["sza"][:]
+        out["vza"] = h5["vza"][:]
+        out["mode"] = h5["mode"][:]
 
-    # Generate some fake dates between two times
-    date1 = DateTime("2020-05-01")
-    date2 = DateTime("2020-05-31")
+        # Convert tai93 to DateTime objects
+        out["datetime"] = DateTime(1993,1,1) .+ (Dates.Microsecond).(h5["tai93"][:] .* 1e6)
 
-    out["datetime"] = sort(
-        unix2datetime.(rand(datetime2unix(date1) : datetime2unix(date2), N))
-    )
+    end
 
     return out
 end
@@ -89,27 +85,12 @@ within the radius of the user-supplied target lon/lat location.
 
 """
 function OCOSampling(target_lon::Number, target_lat::Number,
-                     radius::Number, datapath::String)
-
-
-    # Get list of files (either path or list)
-    filelist = list_OCO_files(datapath)
-
-
-    #for fname in filelist
-    #    tmp_dict = read_OCO_file(fname)
-    #end
-
+                     radius::Number, oco_location_file::String)
 
     locarray = Geolocation[]
     scenearray = Scene[]
 
-    tmp_dict = read_OCO_file("")
-    # TODO
-    # build a full catalogue of ALL valid OCO-2 or OCO-3
-    # scenes and store them in a compact HDF5 file to be
-    # used here. So we can actually take the full record
-    # of *ALL* OCO-2/3 scenes.
+    tmp_dict = read_OCO_file(oco_location_file)
 
     # Go through scenes and create scene and location objects
     for i in 1:length(tmp_dict["lon"])

@@ -44,7 +44,7 @@ Type to hold both a location {Geolocation} and a {DateTime}
 time which holds the measurement time.
 """
 struct GeolocationTime
-    location::Geolocation
+    loc::Geolocation
     time::DateTime
 end
 
@@ -84,22 +84,12 @@ struct Aggregate
     N::Int
     # Scene indices, in case you want to refer back to other data
     scene_idx::Array{Int, 1}
+    # Scenes
+    scenes::Array{Scene, 1}
     # Start time
     start_time::DateTime
     # End time
     end_time::DateTime
-    # SIF
-    SIF::Array{<:Number, 1}
-    # SIF single-sounding uncertainty
-    SIF_ucert::Array{<:Number, 1}
-    # solar zenith angle
-    SZA::Array{<:Number, 1}
-    # viewing zenith angle
-    VZA::Array{<:Number, 1}
-    # NIRv
-    NIRv::Array{<:Number, 1}
-    # Surface albedo (at the SIF wavelength)
-    albedo::Array{<:Number, 1}
 end
 
 

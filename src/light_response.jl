@@ -80,8 +80,8 @@ function aggregate_scenes(IS::InstrumentSampling,
 
     # Compute spatial aggregation here
     spatial_bound, spatial_idx = compute_2d_boundaries_indices(
-        (p -> p.loctime.location.lon).(IS.scenes),
-        (p -> p.loctime.location.lat).(IS.scenes),
+        (p -> p.loctime.loc.lon).(IS.scenes),
+        (p -> p.loctime.loc.lat).(IS.scenes),
         SS
     )
 
@@ -139,14 +139,9 @@ function aggregate_scenes(IS::InstrumentSampling,
             this_aggregate = Aggregate(
                 length(agg_idx),
                 agg_idx,
+                IS.scenes[agg_idx],
                 time_boundary[i],
                 time_boundary[i+1],
-                (p -> p.SIF).(IS.scenes[agg_idx]),
-                (p -> p.SIF_ucert).(IS.scenes[agg_idx]),
-                (p -> p.SZA).(IS.scenes[agg_idx]),
-                (p -> p.VZA).(IS.scenes[agg_idx]),
-                (p -> p.NIRv).(IS.scenes[agg_idx]),
-                (p -> p.albedo).(IS.scenes[agg_idx])
             )
 
             push!(aggregates, this_aggregate)
