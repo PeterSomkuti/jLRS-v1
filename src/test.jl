@@ -21,7 +21,7 @@ weekly = jLRS.WeeklySampling(1)
 halfweekly = jLRS.WeeklySampling(0.5)
 
 noagg = jLRS.FullROI()
-bigagg = jLRS.RegularGridCells(2, 2)
+bigagg = jLRS.RegularGridCells(1, 1)
 
 # Perform the aggregation step
 agg1 = jLRS.aggregate_scenes(s1, noagg, weekly)
