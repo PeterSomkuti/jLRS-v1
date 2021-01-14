@@ -261,7 +261,6 @@ function +(IS1::T1, IS2::T2) where {T1<:InstrumentSampling, T2<:InstrumentSampli
         return T1(
             newinfo,
             newinstrument,
-            get_instrument(IS1),
             newlocations,
             vcat(IS1.scenes, IS2.scenes[include_list])
         )
