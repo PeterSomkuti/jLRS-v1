@@ -1,6 +1,6 @@
 # Standard library
 using Dates
-import Base: length
+import Base: length,+
 
 """
     Geolocation (lon, lat)
@@ -138,7 +138,12 @@ end
 
 # OCO-2/3 type sampling pattern (this uses real data)
 struct OCOSampling<:InstrumentSampling
+    # Information about how this object was created
     info::String
+
+    # Which instrument?
+    instrument::Array{String, 1}
+
     # Scene locations obtained from files
     locations::Array{Geolocation, 1}
 
@@ -148,6 +153,127 @@ struct OCOSampling<:InstrumentSampling
     scenes::Array{Scene, 1}
 end
 
+# Some new combined sampling
+# (fill this in when you have a better idea of what to do with mixed samplings)
+struct CombinedSampling<:InstrumentSampling
+    info::String
+    instruments::Array{String, 1}
+    # Scene locations obtained from files
+    locations::Array{Geolocation, 1}
+
+    # This is merely an array of scenes which are
+    # obtained through files. Can be of different
+    # dimensions than scenelocs
+    scenes::Array{Scene, 1}
+end
+
+
+############################################################
+# Various getter functions to obtain data from scenes etc. #
+############################################################
+
+get_instrument(IS::OCOSampling) = IS.instrument
+
+get_locations(IS::InstrumentSampling) = IS.locations
+get_locations_lons(IS::InstrumentSampling) = (p -> p.lon).(get_locations(IS))
+get_locations_lats(IS::InstrumentSampling) = (p -> p.lat).(get_locations(IS))
+
+get_scene_times(IS::InstrumentSampling) = (p -> p.loctime.time).(IS.scenes)
+get_scene_locations(IS::InstrumentSampling) = (p -> p.loctime.loc).(IS.scenes)
+get_scene_lons(IS::InstrumentSampling) = (p -> p.lon).(get_scene_locations(IS))
+get_scene_lats(IS::InstrumentSampling) = (p -> p.lat).(get_scene_locations(IS))
+
+# Define an addition (merger) of two InstrumentSamplings
+# (difficult? this should work for all instrument types?)
+function +(IS1::T1, IS2::T2) where {T1<:InstrumentSampling, T2<:InstrumentSampling}
+
+    newinfo = "$(IS1.info) + $(IS2.info)"
+
+    # We do not want any duplicates in the merged IS object,
+    # so that we don't overcount measurements
+    # ------------------------------------------------------
+
+    # Simple set union works just fine, and is fast
+    newlocations = union(IS1.locations, IS2.locations)
+
+    # Scenes are a little more tricky:
+    # It could happen that the same exact location is sampled by
+    # multiple instruments at the same time. So we consider a scene
+    # a duplicate if the location, the time, and the VZA is the same.
+
+    # We are therefore performing a negative search - find scenes for
+    # with the time is the same (IS.scenes[].loctime.time is time-ordered),
+    # and then check for those duplicate scenes whether the other
+    # quantities are the same. If they are, those scenes of IS2 are
+    # added to the exclusion list which are not taken up into the
+    # new merged IS object.
+
+    IS1_instrument = get_instrument(IS1)
+    IS2_instrument = get_instrument(IS2)
+
+    IS1_times = get_scene_times(IS1)
+    IS2_times = get_scene_times(IS2)
+
+    intersect_times = intersect(IS1_times, IS2_times)
+    srt_IS1 = searchsortedfirst.(Ref(IS1_times), intersect_times)
+    srt_IS2 = searchsortedfirst.(Ref(IS2_times), intersect_times)
+
+    exclude_list = Int[]
+
+    for i in 1:length(srt_IS1)
+
+        s1 = IS1.scenes[srt_IS1[i]]
+        s2 = IS2.scenes[srt_IS2[i]]
+
+        check = (
+            (s1.loctime == s2.loctime) &
+            (s1.VZA == s2.VZA)
+        )
+
+        if check
+
+            push!(exclude_list, srt_IS2[i])
+
+        end
+    end
+
+    # From the exclude list, build an include list
+    include_list = setdiff(
+        collect(1:length(IS2.scenes)),
+        exclude_list
+    )
+
+
+    # Depending on what type combinations we have, create a new object
+    if T1 == T2
+
+        if IS1_instrument == IS2_instrument
+            # If the two instrument descriptors are the same,
+            # just use the same instrument descriptor
+            newinstrument = IS1_instrument
+        else
+            # Otherwise, build a new array with unique entries only
+            newinstrument = unique(
+                vcat(IS1_instrument, IS1_instrument)
+            )
+        end
+
+        return T1(
+            newinfo,
+            newinstrument,
+            get_instrument(IS1),
+            newlocations,
+            vcat(IS1.scenes, IS2.scenes[include_list])
+        )
+
+    else
+
+        return nothing
+
+    end
+
+
+end
 
 
 abstract type TemporalSampling end

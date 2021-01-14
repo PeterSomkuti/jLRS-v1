@@ -19,6 +19,11 @@ s1 = jLRS.OCOSampling(-105.0844, # target lon
                       600, # radius in km
                       "/data10/psomkuti/OCO_locations/oco3_locations_202007.h5")
 
+s2 = jLRS.OCOSampling([-110, 30, -100, 50],
+                      "/data10/psomkuti/OCO_locations/oco2_locations_202007.h5")
+
+s3 = s1 + s2
+
 # Using the locations and samplings, produce a light response curve given some sampling
 weekly = jLRS.WeeklySampling(1)
 halfweekly = jLRS.WeeklySampling(0.5)
