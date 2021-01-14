@@ -27,13 +27,13 @@ function read_OCO_file(fname::String)
     end
 
     # In case we need to log whether this is OCO-2 or OCO-3
-    out["instrument"] = h5read(fname, "/instrument")
+    out["instrument"] = String(h5read(fname, "/instrument"))
 
     return out
 end
 
 
-function covert_OCO_dict_to_scenes(dict)
+function convert_OCO_dict_to_scenes(dict)
 
     locarray = Geolocation[]
     scenearray = Scene[]
@@ -72,7 +72,6 @@ function covert_OCO_dict_to_scenes(dict)
     # We must time-order scenes (measurements)
     time_sort = sortperm((p -> p.loctime.time).(scenearray))
     # Not sure what order we want for locations?
-    
 
     return dict["instrument"], locarray, scenearray[time_sort]
 
@@ -97,11 +96,11 @@ within the radius of the user-supplied target lon/lat location.
 - 'OCOSampling': OCO sampling object
 
 """
-function OCOSampling(target_lon::Number, target_lat::Number,
-                     radius::Number, oco_location_file::String)
+function OCOSampling(target_lon, target_lat,
+                     radius, oco_location_file)
 
     tmp_dict = read_OCO_file(oco_location_file)
-    instrument, locarray, scenearray = covert_OCO_dict_to_scenes(tmp_dict)
+    instrument, locarray, scenearray = convert_OCO_dict_to_scenes(tmp_dict)
 
     # Select only locations which lie within radius
     mask = mask_locations_within_radius(
@@ -141,7 +140,7 @@ within the bounding box defined as [lon_min, lat_min, lon_max, lat_max]
 function OCOSampling(bbox::Array{<:Number, 1}, oco_location_file::String)
 
     tmp_dict = read_OCO_file(oco_location_file)
-    instrument, locarray, scenearray = covert_OCO_dict_to_scenes(tmp_dict)
+    instrument, locarray, scenearray = convert_OCO_dict_to_scenes(tmp_dict)
 
     # Select only locations which lie within bounding box
     lons = (p -> p.lon).(locarray)

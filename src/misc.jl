@@ -105,7 +105,10 @@ of the 2D grid in which certain coordinates fall into (stdlib Julia functions
 don't return the indices sadly, so we built our own)
 
 """
-function calculate_regular_2d_histogram(lons, lats, delta_lon, delta_lat)
+function calculate_regular_2d_histogram(lons::Array{<:Number, 1},
+                                        lats::Array{<:Number, 1},
+                                        delta_lon,
+                                        delta_lat)
 
     # Construct the lon and lat boundaries
     # ------------------------------------

@@ -7,8 +7,8 @@ think e.g. 2x2 degree grid boxes.
 
 """
 
-function compute_2d_boundaries_indices(lons::Array{<:Number, 1},
-                                       lats::Array{<:Number, 1},
+function compute_2d_boundaries_indices(lons, #::Array{<:Number, 1},
+                                       lats, #::Array{<:Number, 1},
                                        SS::RegularGridCells)
 
     return calculate_regular_2d_histogram(

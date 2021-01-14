@@ -2,6 +2,9 @@
 using Dates
 import Base: length,+
 
+
+abstract type AbstractLocation end
+
 """
     Geolocation (lon, lat)
 
@@ -11,18 +14,18 @@ are within bounds [-180 180] and [-90 90] and throws
 an error if not.
 
 # Arguments
-- 'lon::Number': Longitude of location
-- 'lat::Number': Latitude of location
+- 'lon<:Real': Longitude of location
+- 'lat<:Real': Latitude of location
 
 # Returns
 - 'Geolocation': Geolocation object
 """
-struct Geolocation
+struct Geolocation <: AbstractLocation
 
-    lon::Number
-    lat::Number
+    lon::Real
+    lat::Real
 
-    function Geolocation(lon::Number, lat::Number)
+    function Geolocation(lon, lat)
 
         # Convert to -180 to 180
         lon = mod((lon + 180), 360) - 180
@@ -43,7 +46,7 @@ end
 Type to hold both a location {Geolocation} and a {DateTime}
 time which holds the measurement time.
 """
-struct GeolocationTime
+struct GeolocationTime <: AbstractLocation
     loc::Geolocation
     time::DateTime
 end
@@ -61,17 +64,17 @@ struct Scene
     # Location and time of scene
     loctime::GeolocationTime
     # SIF value
-    SIF::Number
+    SIF::Real
     # SIF single-sounding uncertainty
-    SIF_ucert::Number
+    SIF_ucert::Real
     # solar zenith angle
-    SZA::Number
+    SZA::Real
     # viewing zenith angle
-    VZA::Number
+    VZA::Real
     # NIRv
-    NIRv::Number
+    NIRv::Real
     # Surface albedo (at the SIF wavelength)
-    albedo::Number
+    albedo::Real
 end
 
 """
@@ -83,9 +86,9 @@ struct Aggregate
     # Number of measurements in aggregate
     N::Int
     # Scene indices, in case you want to refer back to other data
-    scene_idx::Array{Int, 1}
+    scene_idx::Vector{Int}
     # Scenes
-    scenes::Array{Scene, 1}
+    scenes::Vector{Scene}
     # Start time
     start_time::DateTime
     # End time
@@ -142,29 +145,29 @@ struct OCOSampling<:InstrumentSampling
     info::String
 
     # Which instrument?
-    instrument::Array{String, 1}
+    instrument::Vector{String}
 
     # Scene locations obtained from files
-    locations::Array{Geolocation, 1}
+    locations::Vector{Geolocation}
 
     # This is merely an array of scenes which are
     # obtained through files. Can be of different
     # dimensions than scenelocs
-    scenes::Array{Scene, 1}
+    scenes::Vector{Scene}
 end
 
 # Some new combined sampling
 # (fill this in when you have a better idea of what to do with mixed samplings)
 struct CombinedSampling<:InstrumentSampling
     info::String
-    instruments::Array{String, 1}
+    instruments::Vector{String}
     # Scene locations obtained from files
-    locations::Array{Geolocation, 1}
+    locations::Vector{Geolocation}
 
     # This is merely an array of scenes which are
     # obtained through files. Can be of different
     # dimensions than scenelocs
-    scenes::Array{Scene, 1}
+    scenes::Vector{Scene}
 end
 
 
@@ -173,10 +176,11 @@ end
 ############################################################
 
 get_instrument(IS::OCOSampling) = IS.instrument
+get_scene_lon(S::Scene) = S.loctime.loc.lon
 
 get_locations(IS::InstrumentSampling) = IS.locations
-get_locations_lons(IS::InstrumentSampling) = (p -> p.lon).(get_locations(IS))
-get_locations_lats(IS::InstrumentSampling) = (p -> p.lat).(get_locations(IS))
+get_locations_lons(IS::InstrumentSampling) = (p -> p.lon).(IS.locations)
+get_locations_lats(IS::InstrumentSampling) = (p -> p.lat).(IS.locations)
 
 get_scene_times(IS::InstrumentSampling) = (p -> p.loctime.time).(IS.scenes)
 get_scene_locations(IS::InstrumentSampling) = (p -> p.loctime.loc).(IS.scenes)
@@ -225,15 +229,13 @@ function +(IS1::T1, IS2::T2) where {T1<:InstrumentSampling, T2<:InstrumentSampli
         s1 = IS1.scenes[srt_IS1[i]]
         s2 = IS2.scenes[srt_IS2[i]]
 
-        check = (
+        check::Bool = (
             (s1.loctime == s2.loctime) &
             (s1.VZA == s2.VZA)
         )
 
         if check
-
             push!(exclude_list, srt_IS2[i])
-
         end
     end
 
@@ -253,9 +255,9 @@ function +(IS1::T1, IS2::T2) where {T1<:InstrumentSampling, T2<:InstrumentSampli
             newinstrument = IS1_instrument
         else
             # Otherwise, build a new array with unique entries only
-            newinstrument = unique(
-                vcat(IS1_instrument, IS1_instrument)
-            )
+            newinstrument = sort(unique(
+                vcat(IS1_instrument, IS2_instrument)
+            ))
         end
 
         return T1(
@@ -280,7 +282,7 @@ abstract type TemporalSampling end
 # Some regular temporal sampling, think "X days/weeks/months"
 struct RegularTemporalSampling<:TemporalSampling
     # Time in [s] between two aggregation boundaries
-    period::Number
+    period::Real
 end
 
 function WeeklySampling(interval::Number)
@@ -308,8 +310,8 @@ end
 
 # Regular X by Y grid cells in lon / lat
 struct RegularGridCells<:SpatialSampling
-    delta_lon::Number
-    delta_lat::Number
+    delta_lon::Real
+    delta_lat::Real
 end
 
 
