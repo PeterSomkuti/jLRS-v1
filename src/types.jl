@@ -61,6 +61,8 @@ SIF value and a NIRv value.
 
 """
 struct Scene
+    # What instrument?
+    instrument::String
     # Location and time of scene
     loctime::GeolocationTime
     # SIF value
@@ -184,6 +186,7 @@ get_locations_lats(IS::InstrumentSampling) = (p -> p.lat).(IS.locations)
 
 get_scene_times(IS::InstrumentSampling) = (p -> p.loctime.time).(IS.scenes)
 get_scene_locations(IS::InstrumentSampling) = (p -> p.loctime.loc).(IS.scenes)
+
 get_scene_lons(IS::InstrumentSampling) = (p -> p.lon).(get_scene_locations(IS))
 get_scene_lats(IS::InstrumentSampling) = (p -> p.lat).(get_scene_locations(IS))
 

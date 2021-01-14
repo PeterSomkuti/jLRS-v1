@@ -57,6 +57,7 @@ function convert_OCO_dict_to_scenes(dict)
         this_albedo = rand()
 
         this_scene = Scene(
+            dict["instrument"],
             this_loctime,
             this_sif,
             this_sif_ucert,
