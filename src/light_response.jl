@@ -7,8 +7,8 @@ think e.g. 2x2 degree grid boxes.
 
 """
 
-function compute_2d_boundaries_indices(lons, #::Array{<:Number, 1},
-                                       lats, #::Array{<:Number, 1},
+function compute_2d_boundaries_indices(lons::Vector{<:Real},
+                                       lats::Array{<:Real},
                                        SS::RegularGridCells)
 
     return calculate_regular_2d_histogram(
@@ -27,8 +27,8 @@ aggregation and only one (maybe big) grid cell and all scenes fall
 into the same [1] grid cell.
 
 """
-function compute_2d_boundaries_indices(lons::Array{<:Number, 1},
-                                       lats::Array{<:Number, 1},
+function compute_2d_boundaries_indices(lons::Vector{<:Real},
+                                       lats::Vector{<:Real},
                                        SS::FullROI)
 
     lon_grid = [minimum(lons), maximum(lons)]
@@ -111,7 +111,7 @@ function aggregate_scenes(IS::InstrumentSampling,
 
                 if (IS.scenes[time_idx[j]].loctime.time >= time_boundary[i]) &
                     (IS.scenes[time_idx[j]].loctime.time < time_boundary[i+1]) &
-                    (ss_idx == spatial_idx[j])
+                    (ss_idx == spatial_idx[time_idx[j]])
 
                     # time_idx[j] belongs to aggregate bin bounded by
                     # time_boundary[i] and time_boundary[i+1]

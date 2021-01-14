@@ -179,6 +179,7 @@ end
 
 get_instrument(IS::OCOSampling) = IS.instrument
 get_scene_lon(S::Scene) = S.loctime.loc.lon
+get_scene_lat(S::Scene) = S.loctime.loc.lon
 
 get_locations(IS::InstrumentSampling) = IS.locations
 get_locations_lons(IS::InstrumentSampling) = (p -> p.lon).(IS.locations)
