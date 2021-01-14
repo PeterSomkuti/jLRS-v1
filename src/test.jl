@@ -32,7 +32,7 @@ noagg = jLRS.FullROI()
 bigagg = jLRS.RegularGridCells(2, 2)
 
 # Perform the aggregation step
-agg1 = jLRS.aggregate_scenes(s1, noagg, weekly)
+agg1 = jLRS.aggregate_scenes(s3, noagg, weekly)
 agg2 = jLRS.aggregate_scenes(s1, noagg, halfweekly)
 agg3 = jLRS.aggregate_scenes(s1, bigagg, weekly)
 agg4 = jLRS.aggregate_scenes(s1, bigagg, halfweekly)

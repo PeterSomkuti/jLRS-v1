@@ -97,11 +97,13 @@ within the radius of the user-supplied target lon/lat location.
 - 'OCOSampling': OCO sampling object
 
 """
-function OCOSampling(target_lon, target_lat,
-                     radius, oco_location_file)
+function OCOSampling(target_lon::Real, target_lat::Real,
+                     radius::Real, oco_location_file::String)
 
     tmp_dict = read_OCO_file(oco_location_file)
     instrument, locarray, scenearray = convert_OCO_dict_to_scenes(tmp_dict)
+
+    println("Subsetting from point + radius")
 
     # Select only locations which lie within radius
     mask = mask_locations_within_radius(
@@ -138,10 +140,12 @@ within the bounding box defined as [lon_min, lat_min, lon_max, lat_max]
 - 'OCOSampling': OCO sampling object
 
 """
-function OCOSampling(bbox::Array{<:Number, 1}, oco_location_file::String)
+function OCOSampling(bbox::Vector{<:Real}, oco_location_file::String)
 
     tmp_dict = read_OCO_file(oco_location_file)
     instrument, locarray, scenearray = convert_OCO_dict_to_scenes(tmp_dict)
+
+    println("Subsetting from bounding box")
 
     # Select only locations which lie within bounding box
     lons = (p -> p.lon).(locarray)
