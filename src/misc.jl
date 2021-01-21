@@ -62,22 +62,15 @@ represents whether a location is within the radius or not.
 - 'Array{Bool, 1}': Boolean mask array
 
 """
-function mask_locations_within_radius(lon, lat, radius, locations::Array{Geolocation, 1})
+function check_location_within_radius(lon, lat, radius, location::Geolocation)
 
-    mask = zeros(Bool, length(locations))
-
-    for i in 1:length(locations)
-
-        dist = calculate_distance(
+    dist = calculate_distance(
             lon, lat,
-            locations[i].lon,
-            locations[i].lat
+            location.lon,
+            location.lat
         )
 
-        mask[i] = dist <= radius
-    end
-
-    return mask
+    return dist <= radius
 
 end
 

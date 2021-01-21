@@ -16,11 +16,11 @@ using jLRS
 
 s1 = jLRS.OCOSampling(-105.0844, # target lon
                       40.5853, # target lat
-                      600, # radius in km
-                      "/data10/psomkuti/OCO_locations/oco3_locations_202007.h5")
+                      50, # radius in km
+                      "/home/psomkuti/oco3.db")
 
-s2 = jLRS.OCOSampling([-110, 30, -100, 50],
-                      "/data10/psomkuti/OCO_locations/oco2_locations_202007.h5")
+s2 = jLRS.OCOSampling([-107, 30, -103, 50],
+                      "/home/psomkuti/oco2.db")
 
 s3 = s1 + s2
 

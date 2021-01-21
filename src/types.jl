@@ -63,6 +63,8 @@ SIF value and a NIRv value.
 struct Scene
     # What instrument?
     instrument::String
+    # Potential sampling mode (nadir, glint, SAM, ..)
+    mode::String
     # Location and time of scene
     loctime::GeolocationTime
     # SIF value
@@ -146,7 +148,7 @@ struct OCOSampling<:InstrumentSampling
     # Information about how this object was created
     info::String
 
-    # Which instrument?
+    # Which instrument(s)?
     instrument::Vector{String}
 
     # Scene locations obtained from files
@@ -161,8 +163,12 @@ end
 # Some new combined sampling
 # (fill this in when you have a better idea of what to do with mixed samplings)
 struct CombinedSampling<:InstrumentSampling
+    # Information about how this object was created
     info::String
+
+    # Which instrument(s)?
     instruments::Vector{String}
+
     # Scene locations obtained from files
     locations::Vector{Geolocation}
 
@@ -177,19 +183,24 @@ end
 # Various getter functions to obtain data from scenes etc. #
 ############################################################
 
-get_instrument(IS::OCOSampling) = IS.instrument
 get_scene_lon(S::Scene) = S.loctime.loc.lon
 get_scene_lat(S::Scene) = S.loctime.loc.lon
+get_scene_time(S::Scene) = S.loctime.time
+get_scene_mode(S::Scene) = S.mode
+
+get_instrument(IS::OCOSampling) = IS.instrument
 
 get_locations(IS::InstrumentSampling) = IS.locations
 get_locations_lons(IS::InstrumentSampling) = (p -> p.lon).(IS.locations)
 get_locations_lats(IS::InstrumentSampling) = (p -> p.lat).(IS.locations)
 
-get_scene_times(IS::InstrumentSampling) = (p -> p.loctime.time).(IS.scenes)
+get_scene_time(IS::InstrumentSampling) = get_scene_time.(IS.scenes)
 get_scene_locations(IS::InstrumentSampling) = (p -> p.loctime.loc).(IS.scenes)
 
 get_scene_lons(IS::InstrumentSampling) = (p -> p.lon).(get_scene_locations(IS))
 get_scene_lats(IS::InstrumentSampling) = (p -> p.lat).(get_scene_locations(IS))
+
+
 
 # Define an addition (merger) of two InstrumentSamplings
 # (difficult? this should work for all instrument types?)
@@ -219,8 +230,8 @@ function +(IS1::T1, IS2::T2) where {T1<:InstrumentSampling, T2<:InstrumentSampli
     IS1_instrument = get_instrument(IS1)
     IS2_instrument = get_instrument(IS2)
 
-    IS1_times = get_scene_times(IS1)
-    IS2_times = get_scene_times(IS2)
+    IS1_times = get_scene_time.(IS1.scenes)
+    IS2_times = get_scene_time.(IS2.scenes)
 
     intersect_times = intersect(IS1_times, IS2_times)
     srt_IS1 = searchsortedfirst.(Ref(IS1_times), intersect_times)
@@ -228,6 +239,9 @@ function +(IS1::T1, IS2::T2) where {T1<:InstrumentSampling, T2<:InstrumentSampli
 
     exclude_list = Int[]
 
+    # Loop through scenes, determing if location+time
+    # and viewing zenith are the same. If so, push them into
+    # exclusion list
     for i in 1:length(srt_IS1)
 
         s1 = IS1.scenes[srt_IS1[i]]
@@ -243,7 +257,8 @@ function +(IS1::T1, IS2::T2) where {T1<:InstrumentSampling, T2<:InstrumentSampli
         end
     end
 
-    # From the exclude list, build an include list
+    # From the exclude list, build an include list via
+    # set operations.
     include_list = setdiff(
         collect(1:length(IS2.scenes)),
         exclude_list
@@ -264,11 +279,18 @@ function +(IS1::T1, IS2::T2) where {T1<:InstrumentSampling, T2<:InstrumentSampli
             ))
         end
 
+        # New scenes will be also sorted by time, even though it will
+        # shuffle instruments.
+
+        newscenes = vcat(IS1.scenes, IS2.scenes[include_list])
+        newsort = sortperm((p -> p.loctime.time).(newscenes))
+
+
         return T1(
             newinfo,
             newinstrument,
             newlocations,
-            vcat(IS1.scenes, IS2.scenes[include_list])
+            newscenes[newsort] # Pass time-sorted scenes
         )
 
     else
@@ -276,7 +298,6 @@ function +(IS1::T1, IS2::T2) where {T1<:InstrumentSampling, T2<:InstrumentSampli
         return nothing
 
     end
-
 
 end
 
@@ -294,6 +315,10 @@ function WeeklySampling(interval::Number)
     return RegularTemporalSampling(604800 * interval)
 end
 
+function DailySampling(interval::Number)
+    # There are 60 * 60 * 24 = 86400 seconds in a day
+    return RegularTemporalSampling(86400 * interval)
+end
 
 # In case we want to investigate some more complex irregular
 # temporal samplings.

@@ -8,7 +8,8 @@ using HDF5
 using Proj4
 using Glob
 using AstroLib
-
+using DataFrames
+using SQLite
 
 # Type definitions required by the rest of the module
 include("types.jl")
