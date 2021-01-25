@@ -7,6 +7,7 @@ function convert_OCO_sounding_id_to_date(sounding_id::Int)
 
     # OCO-type sounding ID must be 16 digits long
     if length(snid) != 16
+        @error "Sounding ID $(sonding_id) must be 16 characters/digits long!"
         return nothing
     end
 
@@ -42,6 +43,8 @@ function convert_OCO_df_to_scenes(df::DataFrame)
             convert_OCO_sounding_id_to_date(row.sounding_id)
         )
 
+        this_sza, this_saa = calculate_solar_angles(this_loctime)
+
         # Replace this with samplers
         this_sif = rand()
         this_sif_ucert = rand()
@@ -50,12 +53,12 @@ function convert_OCO_df_to_scenes(df::DataFrame)
 
         this_scene = Scene(
             "instrument",
-            row.mode,
-            this_loctime,
+            row.mode, # sampling mode comes from the instrument
+            this_loctime, # location time comes from the instrument
             this_sif,
             this_sif_ucert,
-            rand(),
-            row.vza,
+            this_sza, # SZA comes from calculcations (via loctime)
+            row.vza, # viewing zenith comes from the instrument
             this_nirv,
             this_albedo
         )
@@ -67,7 +70,7 @@ function convert_OCO_df_to_scenes(df::DataFrame)
     @info "Populated $(length(locarray)) scene objects."
 
     # We must time-order scenes (measurements)
-    time_sort = sortperm(get_scene_time.(scenearray))
+    time_sort = sortperm(get_time.(scenearray))
     # Not sure what order we want for locations?
 
     return "instrument", locarray[time_sort], scenearray[time_sort]

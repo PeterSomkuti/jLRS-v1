@@ -1,6 +1,7 @@
 # Standard library
+using Printf
 using Dates
-import Base: length,+
+import Base: length, +, show
 
 
 abstract type AbstractLocation end
@@ -183,23 +184,43 @@ end
 # Various getter functions to obtain data from scenes etc. #
 ############################################################
 
-get_scene_lon(S::Scene) = S.loctime.loc.lon
-get_scene_lat(S::Scene) = S.loctime.loc.lon
-get_scene_time(S::Scene) = S.loctime.time
-get_scene_mode(S::Scene) = S.mode
+get_loc(S::Scene) = S.loctime.loc
+get_loctime(S::Scene) = S.loctime
+get_lon(S::Scene) = S.loctime.loc.lon
+get_lat(S::Scene) = S.loctime.loc.lat
+get_time(S::Scene) = S.loctime.time
+get_mode(S::Scene) = S.mode
+get_sza(S::Scene) = S.SZA
+get_vza(S::Scene) = S.VZA
+get_instrument(S::Scene) = S.instrument
 
 get_instrument(IS::OCOSampling) = IS.instrument
 
-get_locations(IS::InstrumentSampling) = IS.locations
-get_locations_lons(IS::InstrumentSampling) = (p -> p.lon).(IS.locations)
-get_locations_lats(IS::InstrumentSampling) = (p -> p.lat).(IS.locations)
+get_loc(IS::InstrumentSampling) = IS.locations
+get_loc_lons(IS::InstrumentSampling) = (p -> p.lon).(IS.locations)
+get_loc_lats(IS::InstrumentSampling) = (p -> p.lat).(IS.locations)
 
-get_scene_time(IS::InstrumentSampling) = get_scene_time.(IS.scenes)
-get_scene_locations(IS::InstrumentSampling) = (p -> p.loctime.loc).(IS.scenes)
+get_time(IS::InstrumentSampling) = get_time.(IS.scenes)
 
-get_scene_lons(IS::InstrumentSampling) = (p -> p.lon).(get_scene_locations(IS))
-get_scene_lats(IS::InstrumentSampling) = (p -> p.lat).(get_scene_locations(IS))
+get_lon(IS::InstrumentSampling) = get_lon.(IS.scenes)
+get_lat(IS::InstrumentSampling) = get_lat.(IS.scenes)
+get_sza(IS::InstrumentSampling) = get_sza.(IS.scenes)
+get_vza(IS::InstrumentSampling) = get_vza.(IS.scenes)
+get_mode(IS::InstrumentSampling) = get_mode.(IS.scenes)
 
+
+# Define some pretty printing for our types
+
+function show(io::IO, S::Scene)
+    print(io, [get_lon(S), get_lat(S)])
+end
+
+function show(io::IO, ::MIME"text/plain", S::Scene)
+    println(io, @sprintf("%s scene at [%0.4f, %0.4f]", get_instrument(S), get_lon(S), get_lat(S)))
+    println(io, Dates.format(get_time(S), "yyyy u dd, HH:MM:SS"))
+    println(io, @sprintf("VZA: %0.3f deg", get_vza(S)))
+    println(io, @sprintf("SZA: %0.3f deg", get_sza(S)))
+end
 
 
 # Define an addition (merger) of two InstrumentSamplings
@@ -230,8 +251,8 @@ function +(IS1::T1, IS2::T2) where {T1<:InstrumentSampling, T2<:InstrumentSampli
     IS1_instrument = get_instrument(IS1)
     IS2_instrument = get_instrument(IS2)
 
-    IS1_times = get_scene_time.(IS1.scenes)
-    IS2_times = get_scene_time.(IS2.scenes)
+    IS1_times = get_time.(IS1.scenes)
+    IS2_times = get_time.(IS2.scenes)
 
     intersect_times = intersect(IS1_times, IS2_times)
     srt_IS1 = searchsortedfirst.(Ref(IS1_times), intersect_times)
@@ -248,8 +269,8 @@ function +(IS1::T1, IS2::T2) where {T1<:InstrumentSampling, T2<:InstrumentSampli
         s2 = IS2.scenes[srt_IS2[i]]
 
         check::Bool = (
-            (s1.loctime == s2.loctime) &
-            (s1.VZA == s2.VZA)
+            (get_loctime(s1) == get_loctime(s2)) &
+            (get_vza(s1) == get_vza(s2))
         )
 
         if check
@@ -260,20 +281,25 @@ function +(IS1::T1, IS2::T2) where {T1<:InstrumentSampling, T2<:InstrumentSampli
     # From the exclude list, build an include list via
     # set operations.
     include_list = setdiff(
-        collect(1:length(IS2.scenes)),
+        range(1, length=length(IS2)),
         exclude_list
     )
 
-
     # Depending on what type combinations we have, create a new object
     if T1 == T2
+
+        # If both InstrumentSamplings are of the same type
+        # (i.e. from the satellite kind), we create a new
+        # object of the same type.
 
         if IS1_instrument == IS2_instrument
             # If the two instrument descriptors are the same,
             # just use the same instrument descriptor
             newinstrument = IS1_instrument
         else
-            # Otherwise, build a new array with unique entries only
+            # Otherwise, build a new array with unique entries only.
+            # For example ["oco2"] and ["oco3"] will become
+            # ["oco2", "oco3"].
             newinstrument = sort(unique(
                 vcat(IS1_instrument, IS2_instrument)
             ))
@@ -281,20 +307,27 @@ function +(IS1::T1, IS2::T2) where {T1<:InstrumentSampling, T2<:InstrumentSampli
 
         # New scenes will be also sorted by time, even though it will
         # shuffle instruments.
-
         newscenes = vcat(IS1.scenes, IS2.scenes[include_list])
-        newsort = sortperm((p -> p.loctime.time).(newscenes))
+        newsort = sortperm(get_time.(newscenes))
 
-
-        return T1(
+        newsampling = T1(
             newinfo,
             newinstrument,
             newlocations,
             newscenes[newsort] # Pass time-sorted scenes
         )
 
+        # Last check if scenes are truly sorted by time
+        if issorted(get_time(newsampling))
+            return newsampling
+        else
+            @error "Resulting InstrumentSampling is not time-sorted. Debug."
+            return nothing
+        end
+
     else
 
+        @error "Not implemented yet!"
         return nothing
 
     end
@@ -342,5 +375,3 @@ struct RegularGridCells<:SpatialSampling
     delta_lon::Real
     delta_lat::Real
 end
-
-

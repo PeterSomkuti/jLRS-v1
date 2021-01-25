@@ -60,28 +60,33 @@ Classic example: collect in daily/weekly/monthly intervals.
 """
 function aggregate_scenes(IS::InstrumentSampling,
                           SS::SpatialSampling,
-                          TS::RegularTemporalSampling)
+                          TS::RegularTemporalSampling; minimum_number=1)
 
     # For empty instrument samplings, just return an empty container
     if length(IS) == 0
         return Aggregate[]
     end
 
+    if minimum_number < 1
+        @error "Minimum number must be >= 1 (you wanted $(minimum_number))"
+        return Aggregate[]
+    end
+
     # Just in case the scenes are not ordered in time, established ordering index
     # Perform the temporal aggregation according to TS
-    time_idx = sortperm([IS.scenes[i].loctime.time for i in 1:length(IS)])
+    time_idx = sortperm(get_time(IS))
 
     # Extract first and last times
-    start_date = IS.scenes[time_idx[1]].loctime.time
-    end_date = IS.scenes[time_idx[end]].loctime.time
+    start_date = get_time(IS)[time_idx[1]]
+    end_date = get_time(IS)[time_idx[end]]
 
     # This is the time boundary grid
     time_boundary = collect(start_date:Dates.Second(TS.period):end_date)
 
     # Compute spatial aggregation here
     spatial_bound, spatial_idx = compute_2d_boundaries_indices(
-        (p -> p.loctime.loc.lon).(IS.scenes),
-        (p -> p.loctime.loc.lat).(IS.scenes),
+        get_lon(IS),
+        get_lat(IS),
         SS
     )
 
@@ -129,8 +134,8 @@ function aggregate_scenes(IS::InstrumentSampling,
                 end
             end
 
-            # Continue to next bin if empty
-            if length(agg_idx) == 0
+            # Continue to next bin if below threshold
+            if length(agg_idx) < minimum_number
                 continue
             end
 

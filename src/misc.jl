@@ -78,8 +78,19 @@ end
 
 
 """
-function recalculate_solar_angles!(scene::Scene)
+function calculate_solar_angles(loctime::GeolocationTime)
 
+    # Convert to Julian date
+    jdate = jdcnv(loctime.time)
+    # Obtain solar position
+    sun_radec = sunpos(jdate)
+    # Get the local position
+    loc_radec = zenpos(jdate, loctime.loc.lat, loctime.loc.lon)
+    # Compute apparent ALT and AZ of the sun from (lon, lat) position
+    sun_alt, sun_az, sun_hour = eq2hor(sun_radec[1], sun_radec[2], jdate, loctime.loc.lat, loctime.loc.lon)
+
+    # Return SZA and SAA in degrees
+    return 90.0 - sun_alt, sun_az
 
 end
 

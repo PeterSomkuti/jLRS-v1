@@ -13,9 +13,9 @@ using SQLite
 
 # Type definitions required by the rest of the module
 include("types.jl")
+
 # Common math-y functions (may use jLRS types)
 include("misc.jl")
-
 
 # Functions for OCO-type
 include("OCO.jl")
@@ -23,7 +23,9 @@ include("OCO.jl")
 # Main calculations
 include("light_response.jl")
 
-print("You have loaded jLRS - thanks!")
+# Plotting tools
+include("plotting.jl")
 
+@info "You have loaded jLRS - thanks!"
 
 end # module
