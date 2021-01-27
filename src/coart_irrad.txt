@@ -1,0 +1,3616 @@
+Atmospheric profile:   US62
+Boundary layer aerosol model:   No boundary layer aerosol
+Stratospheric aerosol model:   No stratospheric layer aerosol
+Ocean depth (m) = 0
+No ocean, land surface albedo = 1
+ 
+Radiance azimuth angles (deg): 0.0
+
+Wavelength (um) = 0.4
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.820E+03  1.820E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      5.794E+02
+
+Wavelength (um) = 0.401
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.904E+03  1.904E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      6.060E+02
+
+Wavelength (um) = 0.402
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  2.020E+03  2.020E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      6.430E+02
+
+Wavelength (um) = 0.403
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.920E+03  1.920E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      6.110E+02
+
+Wavelength (um) = 0.404
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.784E+03  1.784E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      5.677E+02
+
+Wavelength (um) = 0.405
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.808E+03  1.808E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      5.755E+02
+
+Wavelength (um) = 0.406
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.841E+03  1.841E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      5.861E+02
+
+Wavelength (um) = 0.407
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.716E+03  1.716E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      5.463E+02
+
+Wavelength (um) = 0.408
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.857E+03  1.857E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      5.912E+02
+
+Wavelength (um) = 0.409
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.999E+03  1.999E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      6.362E+02
+
+Wavelength (um) = 0.41
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.720E+03  1.720E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      5.475E+02
+
+Wavelength (um) = 0.411
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.817E+03  1.817E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      5.784E+02
+
+Wavelength (um) = 0.412
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  2.022E+03  2.022E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      6.436E+02
+
+Wavelength (um) = 0.413
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.941E+03  1.941E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      6.178E+02
+
+Wavelength (um) = 0.414
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.925E+03  1.925E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      6.127E+02
+
+Wavelength (um) = 0.415
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.891E+03  1.891E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      6.020E+02
+
+Wavelength (um) = 0.416
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.983E+03  1.983E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      6.311E+02
+
+Wavelength (um) = 0.417
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.934E+03  1.934E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      6.157E+02
+
+Wavelength (um) = 0.418
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.818E+03  1.818E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      5.787E+02
+
+Wavelength (um) = 0.419
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.860E+03  1.860E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      5.920E+02
+
+Wavelength (um) = 0.42
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.886E+03  1.886E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      6.003E+02
+
+Wavelength (um) = 0.421
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.974E+03  1.974E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      6.282E+02
+
+Wavelength (um) = 0.422
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.843E+03  1.843E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      5.866E+02
+
+Wavelength (um) = 0.423
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.772E+03  1.772E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      5.641E+02
+
+Wavelength (um) = 0.424
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.926E+03  1.926E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      6.131E+02
+
+Wavelength (um) = 0.425
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.889E+03  1.889E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      6.013E+02
+
+Wavelength (um) = 0.426
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.857E+03  1.857E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      5.912E+02
+
+Wavelength (um) = 0.427
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.784E+03  1.784E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      5.678E+02
+
+Wavelength (um) = 0.428
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.708E+03  1.708E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      5.436E+02
+
+Wavelength (um) = 0.429
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.716E+03  1.716E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      5.461E+02
+
+Wavelength (um) = 0.43
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.361E+03  1.361E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      4.333E+02
+
+Wavelength (um) = 0.431
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.516E+03  1.516E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      4.826E+02
+
+Wavelength (um) = 0.432
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.856E+03  1.856E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      5.907E+02
+
+Wavelength (um) = 0.433
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.822E+03  1.822E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      5.800E+02
+
+Wavelength (um) = 0.434
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.861E+03  1.861E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      5.923E+02
+
+Wavelength (um) = 0.435
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.816E+03  1.816E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      5.780E+02
+
+Wavelength (um) = 0.436
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.991E+03  1.991E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      6.339E+02
+
+Wavelength (um) = 0.437
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  2.071E+03  2.071E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      6.593E+02
+
+Wavelength (um) = 0.438
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.789E+03  1.789E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      5.696E+02
+
+Wavelength (um) = 0.439
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.835E+03  1.835E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      5.840E+02
+
+Wavelength (um) = 0.44
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.923E+03  1.923E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      6.121E+02
+
+Wavelength (um) = 0.441
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.947E+03  1.947E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      6.197E+02
+
+Wavelength (um) = 0.442
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  2.146E+03  2.146E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      6.831E+02
+
+Wavelength (um) = 0.443
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  2.091E+03  2.091E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      6.655E+02
+
+Wavelength (um) = 0.444
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  2.105E+03  2.105E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      6.700E+02
+
+Wavelength (um) = 0.445
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  2.053E+03  2.053E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      6.534E+02
+
+Wavelength (um) = 0.446
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.965E+03  1.965E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      6.256E+02
+
+Wavelength (um) = 0.447
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  2.155E+03  2.155E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      6.860E+02
+
+Wavelength (um) = 0.448
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  2.192E+03  2.192E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      6.977E+02
+
+Wavelength (um) = 0.449
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  2.133E+03  2.133E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      6.789E+02
+
+Wavelength (um) = 0.45
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  2.252E+03  2.252E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      7.169E+02
+
+Wavelength (um) = 0.451
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  2.309E+03  2.309E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      7.351E+02
+
+Wavelength (um) = 0.452
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  2.170E+03  2.170E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      6.907E+02
+
+Wavelength (um) = 0.453
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  2.090E+03  2.090E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      6.653E+02
+
+Wavelength (um) = 0.454
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  2.123E+03  2.123E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      6.759E+02
+
+Wavelength (um) = 0.455
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  2.152E+03  2.152E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      6.849E+02
+
+Wavelength (um) = 0.456
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  2.206E+03  2.206E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      7.021E+02
+
+Wavelength (um) = 0.457
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  2.255E+03  2.255E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      7.177E+02
+
+Wavelength (um) = 0.458
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  2.181E+03  2.181E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      6.943E+02
+
+Wavelength (um) = 0.459
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  2.119E+03  2.119E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      6.745E+02
+
+Wavelength (um) = 0.46
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  2.174E+03  2.174E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      6.919E+02
+
+Wavelength (um) = 0.461
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  2.186E+03  2.186E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      6.959E+02
+
+Wavelength (um) = 0.462
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  2.227E+03  2.227E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      7.088E+02
+
+Wavelength (um) = 0.463
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  2.225E+03  2.225E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      7.083E+02
+
+Wavelength (um) = 0.464
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  2.131E+03  2.131E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      6.782E+02
+
+Wavelength (um) = 0.465
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  2.154E+03  2.154E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      6.856E+02
+
+Wavelength (um) = 0.466
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  2.112E+03  2.112E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      6.724E+02
+
+Wavelength (um) = 0.467
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  2.090E+03  2.090E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      6.652E+02
+
+Wavelength (um) = 0.468
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  2.143E+03  2.143E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      6.820E+02
+
+Wavelength (um) = 0.469
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  2.129E+03  2.129E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      6.778E+02
+
+Wavelength (um) = 0.47
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  2.048E+03  2.048E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      6.518E+02
+
+Wavelength (um) = 0.471
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  2.057E+03  2.057E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      6.547E+02
+
+Wavelength (um) = 0.472
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  2.169E+03  2.169E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      6.904E+02
+
+Wavelength (um) = 0.473
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  2.126E+03  2.126E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      6.766E+02
+
+Wavelength (um) = 0.474
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  2.131E+03  2.131E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      6.783E+02
+
+Wavelength (um) = 0.475
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  2.153E+03  2.153E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      6.855E+02
+
+Wavelength (um) = 0.476
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  2.070E+03  2.070E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      6.588E+02
+
+Wavelength (um) = 0.477
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  2.113E+03  2.113E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      6.727E+02
+
+Wavelength (um) = 0.478
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  2.140E+03  2.140E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      6.813E+02
+
+Wavelength (um) = 0.479
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  2.137E+03  2.137E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      6.802E+02
+
+Wavelength (um) = 0.48
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  2.161E+03  2.161E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      6.880E+02
+
+Wavelength (um) = 0.481
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  2.170E+03  2.170E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      6.908E+02
+
+Wavelength (um) = 0.482
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  2.170E+03  2.170E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      6.908E+02
+
+Wavelength (um) = 0.483
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  2.127E+03  2.127E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      6.769E+02
+
+Wavelength (um) = 0.484
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  2.110E+03  2.110E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      6.715E+02
+
+Wavelength (um) = 0.485
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  2.019E+03  2.019E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      6.427E+02
+
+Wavelength (um) = 0.486
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.799E+03  1.799E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      5.727E+02
+
+Wavelength (um) = 0.487
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.802E+03  1.802E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      5.735E+02
+
+Wavelength (um) = 0.488
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.988E+03  1.988E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      6.327E+02
+
+Wavelength (um) = 0.489
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  2.036E+03  2.036E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      6.481E+02
+
+Wavelength (um) = 0.49
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  2.099E+03  2.099E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      6.682E+02
+
+Wavelength (um) = 0.491
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  2.054E+03  2.054E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      6.538E+02
+
+Wavelength (um) = 0.492
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.991E+03  1.991E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      6.339E+02
+
+Wavelength (um) = 0.493
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.974E+03  1.974E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      6.285E+02
+
+Wavelength (um) = 0.494
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  2.085E+03  2.085E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      6.637E+02
+
+Wavelength (um) = 0.495
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  2.097E+03  2.097E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      6.675E+02
+
+Wavelength (um) = 0.496
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  2.050E+03  2.050E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      6.525E+02
+
+Wavelength (um) = 0.497
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  2.141E+03  2.141E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      6.817E+02
+
+Wavelength (um) = 0.498
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  2.018E+03  2.018E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      6.424E+02
+
+Wavelength (um) = 0.499
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  2.002E+03  2.002E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      6.373E+02
+
+Wavelength (um) = 0.5
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  2.017E+03  2.017E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      6.421E+02
+
+Wavelength (um) = 0.501
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.897E+03  1.897E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      6.037E+02
+
+Wavelength (um) = 0.502
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.926E+03  1.926E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      6.132E+02
+
+Wavelength (um) = 0.503
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  2.009E+03  2.009E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      6.396E+02
+
+Wavelength (um) = 0.504
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.969E+03  1.969E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      6.269E+02
+
+Wavelength (um) = 0.505
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  2.005E+03  2.005E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      6.382E+02
+
+Wavelength (um) = 0.506
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  2.069E+03  2.069E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      6.584E+02
+
+Wavelength (um) = 0.507
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  2.003E+03  2.003E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      6.375E+02
+
+Wavelength (um) = 0.508
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.985E+03  1.985E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      6.317E+02
+
+Wavelength (um) = 0.509
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.991E+03  1.991E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      6.339E+02
+
+Wavelength (um) = 0.51
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.999E+03  1.999E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      6.363E+02
+
+Wavelength (um) = 0.511
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  2.055E+03  2.055E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      6.541E+02
+
+Wavelength (um) = 0.512
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  2.006E+03  2.006E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      6.385E+02
+
+Wavelength (um) = 0.513
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.924E+03  1.924E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      6.123E+02
+
+Wavelength (um) = 0.514
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.931E+03  1.931E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      6.147E+02
+
+Wavelength (um) = 0.515
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.971E+03  1.971E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      6.274E+02
+
+Wavelength (um) = 0.516
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.841E+03  1.841E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      5.860E+02
+
+Wavelength (um) = 0.517
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.749E+03  1.749E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      5.566E+02
+
+Wavelength (um) = 0.518
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.739E+03  1.739E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      5.535E+02
+
+Wavelength (um) = 0.519
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.794E+03  1.794E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      5.711E+02
+
+Wavelength (um) = 0.52
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.893E+03  1.893E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      6.025E+02
+
+Wavelength (um) = 0.521
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.927E+03  1.927E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      6.133E+02
+
+Wavelength (um) = 0.522
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.923E+03  1.923E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      6.122E+02
+
+Wavelength (um) = 0.523
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.899E+03  1.899E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      6.045E+02
+
+Wavelength (um) = 0.524
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.981E+03  1.981E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      6.306E+02
+
+Wavelength (um) = 0.525
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  2.013E+03  2.013E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      6.408E+02
+
+Wavelength (um) = 0.526
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.839E+03  1.839E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      5.854E+02
+
+Wavelength (um) = 0.527
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.772E+03  1.772E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      5.640E+02
+
+Wavelength (um) = 0.528
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.921E+03  1.921E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      6.115E+02
+
+Wavelength (um) = 0.529
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.949E+03  1.949E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      6.203E+02
+
+Wavelength (um) = 0.53
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.972E+03  1.972E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      6.276E+02
+
+Wavelength (um) = 0.531
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  2.008E+03  2.008E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      6.392E+02
+
+Wavelength (um) = 0.532
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.892E+03  1.892E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      6.024E+02
+
+Wavelength (um) = 0.533
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.876E+03  1.876E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      5.973E+02
+
+Wavelength (um) = 0.534
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.923E+03  1.923E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      6.120E+02
+
+Wavelength (um) = 0.535
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.956E+03  1.956E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      6.226E+02
+
+Wavelength (um) = 0.536
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.976E+03  1.976E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      6.289E+02
+
+Wavelength (um) = 0.537
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.896E+03  1.896E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      6.034E+02
+
+Wavelength (um) = 0.538
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.929E+03  1.929E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      6.140E+02
+
+Wavelength (um) = 0.539
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.903E+03  1.903E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      6.058E+02
+
+Wavelength (um) = 0.54
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.815E+03  1.815E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      5.777E+02
+
+Wavelength (um) = 0.541
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.857E+03  1.857E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      5.910E+02
+
+Wavelength (um) = 0.542
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.883E+03  1.883E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      5.993E+02
+
+Wavelength (um) = 0.543
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.872E+03  1.872E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      5.958E+02
+
+Wavelength (um) = 0.544
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.907E+03  1.907E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      6.069E+02
+
+Wavelength (um) = 0.545
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.913E+03  1.913E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      6.091E+02
+
+Wavelength (um) = 0.546
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.917E+03  1.917E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      6.101E+02
+
+Wavelength (um) = 0.547
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.873E+03  1.873E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      5.963E+02
+
+Wavelength (um) = 0.548
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.864E+03  1.864E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      5.935E+02
+
+Wavelength (um) = 0.549
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.901E+03  1.901E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      6.051E+02
+
+Wavelength (um) = 0.55
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.895E+03  1.895E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      6.033E+02
+
+Wavelength (um) = 0.551
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.882E+03  1.882E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      5.991E+02
+
+Wavelength (um) = 0.552
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.872E+03  1.872E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      5.960E+02
+
+Wavelength (um) = 0.553
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.875E+03  1.875E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      5.968E+02
+
+Wavelength (um) = 0.554
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.902E+03  1.902E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      6.053E+02
+
+Wavelength (um) = 0.555
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.912E+03  1.912E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      6.086E+02
+
+Wavelength (um) = 0.556
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.863E+03  1.863E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      5.930E+02
+
+Wavelength (um) = 0.557
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.837E+03  1.837E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      5.849E+02
+
+Wavelength (um) = 0.558
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.822E+03  1.822E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      5.800E+02
+
+Wavelength (um) = 0.559
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.796E+03  1.796E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      5.715E+02
+
+Wavelength (um) = 0.56
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.829E+03  1.829E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      5.821E+02
+
+Wavelength (um) = 0.561
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.831E+03  1.831E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      5.827E+02
+
+Wavelength (um) = 0.562
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.830E+03  1.830E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      5.825E+02
+
+Wavelength (um) = 0.563
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.849E+03  1.849E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      5.886E+02
+
+Wavelength (um) = 0.564
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.849E+03  1.849E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      5.887E+02
+
+Wavelength (um) = 0.565
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.812E+03  1.812E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      5.768E+02
+
+Wavelength (um) = 0.566
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.793E+03  1.793E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      5.708E+02
+
+Wavelength (um) = 0.567
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.842E+03  1.842E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      5.864E+02
+
+Wavelength (um) = 0.568
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.808E+03  1.808E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      5.756E+02
+
+Wavelength (um) = 0.569
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.769E+03  1.769E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      5.632E+02
+
+Wavelength (um) = 0.57
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.753E+03  1.753E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      5.579E+02
+
+Wavelength (um) = 0.571
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.744E+03  1.744E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      5.551E+02
+
+Wavelength (um) = 0.572
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.797E+03  1.797E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      5.719E+02
+
+Wavelength (um) = 0.573
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.820E+03  1.820E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      5.793E+02
+
+Wavelength (um) = 0.574
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.807E+03  1.807E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      5.750E+02
+
+Wavelength (um) = 0.575
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.781E+03  1.781E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      5.668E+02
+
+Wavelength (um) = 0.576
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.765E+03  1.765E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      5.618E+02
+
+Wavelength (um) = 0.577
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.790E+03  1.790E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      5.697E+02
+
+Wavelength (um) = 0.578
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.760E+03  1.760E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      5.603E+02
+
+Wavelength (um) = 0.579
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.752E+03  1.752E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      5.578E+02
+
+Wavelength (um) = 0.58
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.789E+03  1.789E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      5.696E+02
+
+Wavelength (um) = 0.581
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.806E+03  1.806E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      5.748E+02
+
+Wavelength (um) = 0.582
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.831E+03  1.831E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      5.828E+02
+
+Wavelength (um) = 0.583
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.833E+03  1.833E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      5.833E+02
+
+Wavelength (um) = 0.584
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.832E+03  1.832E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      5.831E+02
+
+Wavelength (um) = 0.585
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.793E+03  1.793E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      5.706E+02
+
+Wavelength (um) = 0.586
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.775E+03  1.775E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      5.651E+02
+
+Wavelength (um) = 0.587
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.804E+03  1.804E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      5.743E+02
+
+Wavelength (um) = 0.588
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.733E+03  1.733E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      5.516E+02
+
+Wavelength (um) = 0.589
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.555E+03  1.555E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      4.951E+02
+
+Wavelength (um) = 0.59
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.594E+03  1.594E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      5.074E+02
+
+Wavelength (um) = 0.591
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.720E+03  1.720E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      5.476E+02
+
+Wavelength (um) = 0.592
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.685E+03  1.685E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      5.364E+02
+
+Wavelength (um) = 0.593
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.732E+03  1.732E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      5.512E+02
+
+Wavelength (um) = 0.594
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.703E+03  1.703E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      5.420E+02
+
+Wavelength (um) = 0.595
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.669E+03  1.669E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      5.312E+02
+
+Wavelength (um) = 0.596
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.723E+03  1.723E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      5.483E+02
+
+Wavelength (um) = 0.597
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.712E+03  1.712E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      5.448E+02
+
+Wavelength (um) = 0.598
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.699E+03  1.699E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      5.409E+02
+
+Wavelength (um) = 0.599
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.704E+03  1.704E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      5.425E+02
+
+Wavelength (um) = 0.6
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.711E+03  1.711E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      5.448E+02
+
+Wavelength (um) = 0.601
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.710E+03  1.710E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      5.442E+02
+
+Wavelength (um) = 0.602
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.698E+03  1.698E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      5.405E+02
+
+Wavelength (um) = 0.603
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.721E+03  1.721E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      5.477E+02
+
+Wavelength (um) = 0.604
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.755E+03  1.755E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      5.587E+02
+
+Wavelength (um) = 0.605
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.741E+03  1.741E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      5.541E+02
+
+Wavelength (um) = 0.606
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.733E+03  1.733E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      5.516E+02
+
+Wavelength (um) = 0.607
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.731E+03  1.731E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      5.510E+02
+
+Wavelength (um) = 0.608
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.722E+03  1.722E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      5.482E+02
+
+Wavelength (um) = 0.609
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.719E+03  1.719E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      5.471E+02
+
+Wavelength (um) = 0.61
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.697E+03  1.697E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      5.403E+02
+
+Wavelength (um) = 0.611
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.700E+03  1.700E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      5.411E+02
+
+Wavelength (um) = 0.612
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.703E+03  1.703E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      5.421E+02
+
+Wavelength (um) = 0.613
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.666E+03  1.666E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      5.305E+02
+
+Wavelength (um) = 0.614
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.673E+03  1.673E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      5.325E+02
+
+Wavelength (um) = 0.615
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.698E+03  1.698E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      5.405E+02
+
+Wavelength (um) = 0.616
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.639E+03  1.639E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      5.216E+02
+
+Wavelength (um) = 0.617
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.635E+03  1.635E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      5.205E+02
+
+Wavelength (um) = 0.618
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.698E+03  1.698E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      5.404E+02
+
+Wavelength (um) = 0.619
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.690E+03  1.690E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      5.378E+02
+
+Wavelength (um) = 0.62
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.695E+03  1.695E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      5.396E+02
+
+Wavelength (um) = 0.621
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.684E+03  1.684E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      5.359E+02
+
+Wavelength (um) = 0.622
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.673E+03  1.673E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      5.324E+02
+
+Wavelength (um) = 0.623
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.662E+03  1.662E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      5.290E+02
+
+Wavelength (um) = 0.624
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.633E+03  1.633E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      5.198E+02
+
+Wavelength (um) = 0.625
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.611E+03  1.611E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      5.128E+02
+
+Wavelength (um) = 0.626
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.630E+03  1.630E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      5.188E+02
+
+Wavelength (um) = 0.627
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.648E+03  1.648E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      5.247E+02
+
+Wavelength (um) = 0.628
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.584E+03  1.584E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      5.042E+02
+
+Wavelength (um) = 0.629
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.611E+03  1.611E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      5.129E+02
+
+Wavelength (um) = 0.63
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.596E+03  1.596E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      5.081E+02
+
+Wavelength (um) = 0.631
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.588E+03  1.588E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      5.053E+02
+
+Wavelength (um) = 0.632
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.582E+03  1.582E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      5.035E+02
+
+Wavelength (um) = 0.633
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.606E+03  1.606E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      5.113E+02
+
+Wavelength (um) = 0.634
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.619E+03  1.619E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      5.152E+02
+
+Wavelength (um) = 0.635
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.620E+03  1.620E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      5.158E+02
+
+Wavelength (um) = 0.636
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.623E+03  1.623E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      5.166E+02
+
+Wavelength (um) = 0.637
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.626E+03  1.626E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      5.175E+02
+
+Wavelength (um) = 0.638
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.635E+03  1.635E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      5.203E+02
+
+Wavelength (um) = 0.639
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.630E+03  1.630E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      5.188E+02
+
+Wavelength (um) = 0.64
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.617E+03  1.617E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      5.148E+02
+
+Wavelength (um) = 0.641
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.602E+03  1.602E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      5.099E+02
+
+Wavelength (um) = 0.642
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.603E+03  1.603E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      5.104E+02
+
+Wavelength (um) = 0.643
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.606E+03  1.606E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      5.113E+02
+
+Wavelength (um) = 0.644
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.612E+03  1.612E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      5.131E+02
+
+Wavelength (um) = 0.645
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.606E+03  1.606E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      5.113E+02
+
+Wavelength (um) = 0.646
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.576E+03  1.576E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      5.018E+02
+
+Wavelength (um) = 0.647
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.542E+03  1.542E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      4.909E+02
+
+Wavelength (um) = 0.648
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.500E+03  1.500E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      4.773E+02
+
+Wavelength (um) = 0.649
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.504E+03  1.504E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      4.786E+02
+
+Wavelength (um) = 0.65
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.549E+03  1.549E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      4.932E+02
+
+Wavelength (um) = 0.651
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.573E+03  1.573E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      5.007E+02
+
+Wavelength (um) = 0.652
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.550E+03  1.550E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      4.935E+02
+
+Wavelength (um) = 0.653
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.572E+03  1.572E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      5.003E+02
+
+Wavelength (um) = 0.654
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.548E+03  1.548E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      4.926E+02
+
+Wavelength (um) = 0.655
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.485E+03  1.485E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      4.726E+02
+
+Wavelength (um) = 0.656
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.406E+03  1.406E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      4.477E+02
+
+Wavelength (um) = 0.657
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.367E+03  1.367E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      4.352E+02
+
+Wavelength (um) = 0.658
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.435E+03  1.435E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      4.567E+02
+
+Wavelength (um) = 0.659
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.525E+03  1.525E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      4.853E+02
+
+Wavelength (um) = 0.66
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.564E+03  1.564E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      4.977E+02
+
+Wavelength (um) = 0.661
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.568E+03  1.568E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      4.991E+02
+
+Wavelength (um) = 0.662
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.561E+03  1.561E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      4.968E+02
+
+Wavelength (um) = 0.663
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.556E+03  1.556E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      4.954E+02
+
+Wavelength (um) = 0.664
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.561E+03  1.561E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      4.970E+02
+
+Wavelength (um) = 0.665
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.561E+03  1.561E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      4.970E+02
+
+Wavelength (um) = 0.666
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.551E+03  1.551E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      4.936E+02
+
+Wavelength (um) = 0.667
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.544E+03  1.544E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      4.914E+02
+
+Wavelength (um) = 0.668
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.548E+03  1.548E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      4.928E+02
+
+Wavelength (um) = 0.669
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.551E+03  1.551E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      4.936E+02
+
+Wavelength (um) = 0.67
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.540E+03  1.540E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      4.901E+02
+
+Wavelength (um) = 0.671
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.527E+03  1.527E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      4.861E+02
+
+Wavelength (um) = 0.672
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.526E+03  1.526E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      4.858E+02
+
+Wavelength (um) = 0.673
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.530E+03  1.530E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      4.870E+02
+
+Wavelength (um) = 0.674
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.527E+03  1.527E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      4.860E+02
+
+Wavelength (um) = 0.675
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.522E+03  1.522E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      4.843E+02
+
+Wavelength (um) = 0.676
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.520E+03  1.520E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      4.837E+02
+
+Wavelength (um) = 0.677
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.519E+03  1.519E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      4.834E+02
+
+Wavelength (um) = 0.678
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.515E+03  1.515E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      4.822E+02
+
+Wavelength (um) = 0.679
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.510E+03  1.510E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      4.807E+02
+
+Wavelength (um) = 0.68
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.505E+03  1.505E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      4.792E+02
+
+Wavelength (um) = 0.681
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.501E+03  1.501E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      4.779E+02
+
+Wavelength (um) = 0.682
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.496E+03  1.496E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      4.763E+02
+
+Wavelength (um) = 0.683
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.486E+03  1.486E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      4.731E+02
+
+Wavelength (um) = 0.684
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.471E+03  1.471E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      4.682E+02
+
+Wavelength (um) = 0.685
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.464E+03  1.464E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      4.661E+02
+
+Wavelength (um) = 0.686
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.459E+03  1.459E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      4.643E+02
+
+Wavelength (um) = 0.687
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.235E+03  1.235E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      3.932E+02
+
+Wavelength (um) = 0.688
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.305E+03  1.305E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      4.155E+02
+
+Wavelength (um) = 0.689
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.280E+03  1.280E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      4.073E+02
+
+Wavelength (um) = 0.69
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.309E+03  1.309E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      4.168E+02
+
+Wavelength (um) = 0.691
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.352E+03  1.352E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      4.303E+02
+
+Wavelength (um) = 0.692
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.377E+03  1.377E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      4.384E+02
+
+Wavelength (um) = 0.693
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.360E+03  1.360E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      4.329E+02
+
+Wavelength (um) = 0.694
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.334E+03  1.334E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      4.247E+02
+
+Wavelength (um) = 0.695
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.347E+03  1.347E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      4.287E+02
+
+Wavelength (um) = 0.696
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.348E+03  1.348E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      4.291E+02
+
+Wavelength (um) = 0.697
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.396E+03  1.396E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      4.443E+02
+
+Wavelength (um) = 0.698
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.387E+03  1.387E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      4.416E+02
+
+Wavelength (um) = 0.699
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.339E+03  1.339E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      4.262E+02
+
+Wavelength (um) = 0.7
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.332E+03  1.332E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      4.240E+02
+
+Wavelength (um) = 0.701
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.305E+03  1.305E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      4.153E+02
+
+Wavelength (um) = 0.702
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.306E+03  1.306E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      4.156E+02
+
+Wavelength (um) = 0.703
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.351E+03  1.351E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      4.299E+02
+
+Wavelength (um) = 0.704
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.365E+03  1.365E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      4.346E+02
+
+Wavelength (um) = 0.705
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.358E+03  1.358E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      4.322E+02
+
+Wavelength (um) = 0.706
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.358E+03  1.358E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      4.323E+02
+
+Wavelength (um) = 0.707
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.354E+03  1.354E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      4.309E+02
+
+Wavelength (um) = 0.708
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.350E+03  1.350E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      4.298E+02
+
+Wavelength (um) = 0.709
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.358E+03  1.358E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      4.321E+02
+
+Wavelength (um) = 0.71
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.343E+03  1.343E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      4.275E+02
+
+Wavelength (um) = 0.711
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.356E+03  1.356E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      4.316E+02
+
+Wavelength (um) = 0.712
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.363E+03  1.363E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      4.339E+02
+
+Wavelength (um) = 0.713
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.347E+03  1.347E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      4.288E+02
+
+Wavelength (um) = 0.714
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.339E+03  1.339E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      4.263E+02
+
+Wavelength (um) = 0.715
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.320E+03  1.320E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      4.203E+02
+
+Wavelength (um) = 0.716
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.300E+03  1.300E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      4.137E+02
+
+Wavelength (um) = 0.717
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.196E+03  1.196E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      3.807E+02
+
+Wavelength (um) = 0.718
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.128E+03  1.128E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      3.590E+02
+
+Wavelength (um) = 0.719
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.099E+03  1.099E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      3.498E+02
+
+Wavelength (um) = 0.72
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.067E+03  1.067E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      3.395E+02
+
+Wavelength (um) = 0.721
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.202E+03  1.202E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      3.827E+02
+
+Wavelength (um) = 0.722
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.258E+03  1.258E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      4.003E+02
+
+Wavelength (um) = 0.723
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.237E+03  1.237E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      3.936E+02
+
+Wavelength (um) = 0.724
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.162E+03  1.162E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      3.700E+02
+
+Wavelength (um) = 0.725
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.171E+03  1.171E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      3.728E+02
+
+Wavelength (um) = 0.726
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.160E+03  1.160E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      3.692E+02
+
+Wavelength (um) = 0.727
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.161E+03  1.161E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      3.697E+02
+
+Wavelength (um) = 0.728
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.143E+03  1.143E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      3.638E+02
+
+Wavelength (um) = 0.729
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.170E+03  1.170E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      3.723E+02
+
+Wavelength (um) = 0.73
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.167E+03  1.167E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      3.714E+02
+
+Wavelength (um) = 0.731
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.163E+03  1.163E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      3.703E+02
+
+Wavelength (um) = 0.732
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.210E+03  1.210E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      3.852E+02
+
+Wavelength (um) = 0.733
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.252E+03  1.252E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      3.987E+02
+
+Wavelength (um) = 0.734
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.270E+03  1.270E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      4.043E+02
+
+Wavelength (um) = 0.735
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.259E+03  1.259E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      4.008E+02
+
+Wavelength (um) = 0.736
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.243E+03  1.243E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      3.956E+02
+
+Wavelength (um) = 0.737
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.250E+03  1.250E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      3.979E+02
+
+Wavelength (um) = 0.738
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.255E+03  1.255E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      3.995E+02
+
+Wavelength (um) = 0.739
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.246E+03  1.246E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      3.967E+02
+
+Wavelength (um) = 0.74
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.248E+03  1.248E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      3.972E+02
+
+Wavelength (um) = 0.741
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.253E+03  1.253E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      3.989E+02
+
+Wavelength (um) = 0.742
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.266E+03  1.266E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      4.030E+02
+
+Wavelength (um) = 0.743
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.286E+03  1.286E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      4.094E+02
+
+Wavelength (um) = 0.744
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.290E+03  1.290E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      4.107E+02
+
+Wavelength (um) = 0.745
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.289E+03  1.289E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      4.104E+02
+
+Wavelength (um) = 0.746
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.292E+03  1.292E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      4.112E+02
+
+Wavelength (um) = 0.747
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.292E+03  1.292E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      4.114E+02
+
+Wavelength (um) = 0.748
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.290E+03  1.290E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      4.107E+02
+
+Wavelength (um) = 0.749
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.284E+03  1.284E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      4.088E+02
+
+Wavelength (um) = 0.75
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.278E+03  1.278E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      4.067E+02
+
+Wavelength (um) = 0.751
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.275E+03  1.275E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      4.058E+02
+
+Wavelength (um) = 0.752
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.274E+03  1.274E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      4.056E+02
+
+Wavelength (um) = 0.753
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.273E+03  1.273E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      4.053E+02
+
+Wavelength (um) = 0.754
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.272E+03  1.272E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      4.048E+02
+
+Wavelength (um) = 0.755
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.269E+03  1.269E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      4.040E+02
+
+Wavelength (um) = 0.756
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.266E+03  1.266E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      4.031E+02
+
+Wavelength (um) = 0.757
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.262E+03  1.262E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      4.018E+02
+
+Wavelength (um) = 0.758
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.255E+03  1.255E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      3.996E+02
+
+Wavelength (um) = 0.759
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.148E+03  1.148E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      3.655E+02
+
+Wavelength (um) = 0.76
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  4.551E+02  4.551E+02
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      1.449E+02
+
+Wavelength (um) = 0.761
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  3.960E+02  3.960E+02
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      1.260E+02
+
+Wavelength (um) = 0.762
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  7.748E+02  7.748E+02
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      2.466E+02
+
+Wavelength (um) = 0.763
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  6.538E+02  6.538E+02
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      2.081E+02
+
+Wavelength (um) = 0.764
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  7.139E+02  7.139E+02
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      2.272E+02
+
+Wavelength (um) = 0.765
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  8.473E+02  8.473E+02
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      2.697E+02
+
+Wavelength (um) = 0.766
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.004E+03  1.004E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      3.197E+02
+
+Wavelength (um) = 0.767
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.074E+03  1.074E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      3.419E+02
+
+Wavelength (um) = 0.768
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.132E+03  1.132E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      3.603E+02
+
+Wavelength (um) = 0.769
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.180E+03  1.180E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      3.756E+02
+
+Wavelength (um) = 0.77
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.204E+03  1.204E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      3.832E+02
+
+Wavelength (um) = 0.771
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.216E+03  1.216E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      3.870E+02
+
+Wavelength (um) = 0.772
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.220E+03  1.220E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      3.882E+02
+
+Wavelength (um) = 0.773
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.220E+03  1.220E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      3.883E+02
+
+Wavelength (um) = 0.774
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.213E+03  1.213E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      3.860E+02
+
+Wavelength (um) = 0.775
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.206E+03  1.206E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      3.839E+02
+
+Wavelength (um) = 0.776
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.208E+03  1.208E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      3.844E+02
+
+Wavelength (um) = 0.777
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.209E+03  1.209E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      3.849E+02
+
+Wavelength (um) = 0.778
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.208E+03  1.208E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      3.844E+02
+
+Wavelength (um) = 0.779
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.203E+03  1.203E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      3.830E+02
+
+Wavelength (um) = 0.78
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.202E+03  1.202E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      3.826E+02
+
+Wavelength (um) = 0.781
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.201E+03  1.201E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      3.823E+02
+
+Wavelength (um) = 0.782
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.196E+03  1.196E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      3.808E+02
+
+Wavelength (um) = 0.783
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.193E+03  1.193E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      3.796E+02
+
+Wavelength (um) = 0.784
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.191E+03  1.191E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      3.792E+02
+
+Wavelength (um) = 0.785
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.190E+03  1.190E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      3.787E+02
+
+Wavelength (um) = 0.786
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.184E+03  1.184E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      3.768E+02
+
+Wavelength (um) = 0.787
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.172E+03  1.172E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      3.730E+02
+
+Wavelength (um) = 0.788
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.164E+03  1.164E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      3.707E+02
+
+Wavelength (um) = 0.789
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.142E+03  1.142E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      3.635E+02
+
+Wavelength (um) = 0.79
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.134E+03  1.134E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      3.611E+02
+
+Wavelength (um) = 0.791
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.130E+03  1.130E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      3.596E+02
+
+Wavelength (um) = 0.792
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.125E+03  1.125E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      3.582E+02
+
+Wavelength (um) = 0.793
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.125E+03  1.125E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      3.581E+02
+
+Wavelength (um) = 0.794
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.136E+03  1.136E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      3.614E+02
+
+Wavelength (um) = 0.795
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.124E+03  1.124E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      3.578E+02
+
+Wavelength (um) = 0.796
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.106E+03  1.106E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      3.521E+02
+
+Wavelength (um) = 0.797
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.116E+03  1.116E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      3.554E+02
+
+Wavelength (um) = 0.798
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.129E+03  1.129E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      3.595E+02
+
+Wavelength (um) = 0.799
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.119E+03  1.119E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      3.563E+02
+
+Wavelength (um) = 0.8
+Solar zenith(deg) =   0.0
+
+Height(km) =   0.000
+
+Down and Up Irradiances (W/m2/um) =  1.110E+03  1.110E+03
+Zenith(deg)  Radiances(w/m2/um/str) - one column for one azimuth    
+   0.00      3.534E+02

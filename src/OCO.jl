@@ -1,4 +1,26 @@
 
+function produce_mode_query(modes::Vector{String}) :: String
+
+    mode_query = ""
+    if length(modes) > 0
+        mode_query = "AND ("
+        for j in 1:length(modes)
+            mode_query *= "mode like '%$(modes[j])%' "
+
+            if j < length(modes)
+                mode_query *= "OR "
+            end
+
+        end
+        mode_query *= ")"
+    end
+
+    return mode_query
+
+end
+
+
+
 
 function convert_OCO_sounding_id_to_date(sounding_id::Int)
 
@@ -30,6 +52,18 @@ end
 
 function convert_OCO_df_to_scenes(df::DataFrame)
 
+    # At this point, we expect all the instrument labels here
+    # to be a unique
+
+    unique_instrument = unique(df.instrument)
+
+    if length(unique_instrument) != 1
+        @error "We have multiple instruments via the SQLITE query: $(unique_instrument)"
+        return nothing
+    end
+
+
+    instrument = unique_instrument[1]
     locarray = Geolocation[]
     scenearray = Scene[]
 
@@ -49,10 +83,11 @@ function convert_OCO_df_to_scenes(df::DataFrame)
         this_sif = rand()
         this_sif_ucert = rand()
         this_nirv = rand()
-        this_albedo = rand()
+        this_reflectance = rand()
+        this_od = 0.0
 
         this_scene = Scene(
-            "instrument",
+            instrument,
             row.mode, # sampling mode comes from the instrument
             this_loctime, # location time comes from the instrument
             this_sif,
@@ -60,7 +95,8 @@ function convert_OCO_df_to_scenes(df::DataFrame)
             this_sza, # SZA comes from calculcations (via loctime)
             row.vza, # viewing zenith comes from the instrument
             this_nirv,
-            this_albedo
+            this_reflectance, # Reflectance comes from BRDF sampling and SZA
+            this_od # optical depth may come from ISCCP one day
         )
 
         push!(locarray, this_loc)
@@ -73,7 +109,7 @@ function convert_OCO_df_to_scenes(df::DataFrame)
     time_sort = sortperm(get_time.(scenearray))
     # Not sure what order we want for locations?
 
-    return "instrument", locarray[time_sort], scenearray[time_sort]
+    return instrument, locarray[time_sort], scenearray[time_sort]
 
 end
 
@@ -97,7 +133,8 @@ within the radius of the user-supplied target lon/lat location.
 
 """
 function OCOSampling(target_lon::Real, target_lat::Real,
-                     radius::Real, oco_db_file::String)
+                     radius::Real, oco_db_file::String;
+                     modes::Vector{String}=String[])
 
 
     # First - construct a sensible bounding box which will definitely contain the
@@ -128,11 +165,17 @@ function OCOSampling(target_lon::Real, target_lat::Real,
         return nothing
     end
 
+
+    # If the user requests certain modes only, we inject the following additional query
+    # into the main query.
+    mode_query = produce_mode_query(modes)
+
     # Construct SQL query
     query = """
     SELECT sounding_id, vza, ST_X(geometry) AS lon, ST_Y(geometry) AS lat, mode
     FROM locations WHERE
     PtDistWithin (MakePoint($(target_lon), $(target_lat), 4326), geometry, $(radius * 1000.0)) = 1
+    $(mode_query)
     AND rowid IN
     (
         SELECT rowid FROM SpatialIndex WHERE f_table_name = 'locations' AND
@@ -145,6 +188,10 @@ function OCOSampling(target_lon::Real, target_lat::Real,
     SQLite.enable_load_extension(db, true)
     DBInterface.execute(db, "SELECT load_extension('/home/psomkuti/miniconda3/lib/mod_spatialite.so');")
     df = DBInterface.execute(db, query) |> DataFrame
+
+    # Obtain instrument label from database and attach to dataframe
+    this_instrument = SQLite.getvalue(DBInterface.execute(db, "SELECT * FROM instrument;"), 1, String)
+    df[!, "instrument"] .= this_instrument
 
     # Turn DataFrame into location and scene arrays
     instrument, locarray, scenearray = convert_OCO_df_to_scenes(df)

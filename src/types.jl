@@ -78,28 +78,12 @@ struct Scene
     VZA::Real
     # NIRv
     NIRv::Real
-    # Surface albedo (at the SIF wavelength)
-    albedo::Real
+    # Surface reflectance (ideally computed from SZA, VZA via BRDF)
+    # such that L_out = reflectance * L_in
+    reflectance::Real
+    # Total column optical depth (e.g. clouds, aerosols)
+    OD::Real
 end
-
-"""
-    Aggregate
-
-Represents a SIF aggregate
-"""
-struct Aggregate
-    # Number of measurements in aggregate
-    N::Int
-    # Scene indices, in case you want to refer back to other data
-    scene_idx::Vector{Int}
-    # Scenes
-    scenes::Vector{Scene}
-    # Start time
-    start_time::DateTime
-    # End time
-    end_time::DateTime
-end
-
 
 
 """
@@ -192,6 +176,7 @@ get_time(S::Scene) = S.loctime.time
 get_mode(S::Scene) = S.mode
 get_sza(S::Scene) = S.SZA
 get_vza(S::Scene) = S.VZA
+get_reflectance(S::Scene) = S.reflectance
 get_instrument(S::Scene) = S.instrument
 
 get_instrument(IS::OCOSampling) = IS.instrument
@@ -220,6 +205,7 @@ function show(io::IO, ::MIME"text/plain", S::Scene)
     println(io, Dates.format(get_time(S), "yyyy u dd, HH:MM:SS"))
     println(io, @sprintf("VZA: %0.3f deg", get_vza(S)))
     println(io, @sprintf("SZA: %0.3f deg", get_sza(S)))
+    println(io, @sprintf("Reflectance: %0.3f", get_reflectance(S)))
 end
 
 
@@ -374,4 +360,23 @@ end
 struct RegularGridCells<:SpatialSampling
     delta_lon::Real
     delta_lat::Real
+end
+
+
+"""
+    Aggregate
+
+Represents a SIF aggregate
+"""
+struct Aggregate
+    # Number of measurements in aggregate
+    N::Int
+    # Scene indices, in case you want to refer back to other data
+    scene_idx::Vector{Int}
+    # Scenes
+    scenes::Vector{Scene}
+    # Start time
+    start_time::DateTime
+    # End time
+    end_time::DateTime
 end
