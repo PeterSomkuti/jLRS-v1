@@ -1,7 +1,7 @@
 # Standard library
 using Printf
 using Dates
-import Base: length, +, show
+import Base: length, +, show, zero
 
 
 abstract type AbstractLocation end
@@ -76,8 +76,14 @@ struct Scene
     SZA::Real
     # viewing zenith angle
     VZA::Real
+    # NDVI
+    NDVI::Real
     # NIRv
     NIRv::Real
+    # BOA irradiance in SIF units W/m2/nm/sr
+    irradiance::Real
+    # BOA PPFD
+    PPFD::Real
     # Surface reflectance (ideally computed from SZA, VZA via BRDF)
     # such that L_out = reflectance * L_in
     reflectance::Real
@@ -176,7 +182,11 @@ get_time(S::Scene) = S.loctime.time
 get_mode(S::Scene) = S.mode
 get_sza(S::Scene) = S.SZA
 get_vza(S::Scene) = S.VZA
+get_ppfd(S::Scene) = S.PPFD
 get_reflectance(S::Scene) = S.reflectance
+get_irradiance(S::Scene) = S.irradiance
+get_ndvi(S::Scene) = S.NDVI
+get_nirv(S::Scene) = S.NIRv
 get_instrument(S::Scene) = S.instrument
 
 get_instrument(IS::OCOSampling) = IS.instrument
@@ -192,6 +202,12 @@ get_lat(IS::InstrumentSampling) = get_lat.(IS.scenes)
 get_sza(IS::InstrumentSampling) = get_sza.(IS.scenes)
 get_vza(IS::InstrumentSampling) = get_vza.(IS.scenes)
 get_mode(IS::InstrumentSampling) = get_mode.(IS.scenes)
+get_ppfd(IS::InstrumentSampling) = get_ppfd.(IS.scenes)
+get_reflectance(IS::InstrumentSampling) = get_reflectance.(IS.scenes)
+get_irradiance(IS::InstrumentSampling) = get_irradiance.(IS.scenes)
+get_ndvi(IS::InstrumentSampling) = get_ndvi.(IS.scenes)
+get_nirv(IS::InstrumentSampling) = get_nirv.(IS.scenes)
+
 
 
 # Define some pretty printing for our types
@@ -205,7 +221,9 @@ function show(io::IO, ::MIME"text/plain", S::Scene)
     println(io, Dates.format(get_time(S), "yyyy u dd, HH:MM:SS"))
     println(io, @sprintf("VZA: %0.3f deg", get_vza(S)))
     println(io, @sprintf("SZA: %0.3f deg", get_sza(S)))
-    println(io, @sprintf("Reflectance: %0.3f", get_reflectance(S)))
+    println(io, @sprintf("Reflectance@755: %0.3f", get_reflectance(S)))
+    println(io, @sprintf("NDVI: %0.3f", get_ndvi(S)))
+    println(io, @sprintf("NIRv: %0.3f", get_nirv(S)))
 end
 
 
@@ -379,4 +397,38 @@ struct Aggregate
     start_time::DateTime
     # End time
     end_time::DateTime
+end
+
+
+# Struct for holding surface data which is then accessed
+# by sampling functions
+
+abstract type SurfaceData end
+
+struct VNPSparseData <: SurfaceData
+    data::Vector{SparseMatrixCSC}
+    lon_bounds::Vector{Real}
+    lat_bounds::Vector{Real}
+    time_bounds::Vector{DateTime}
+    data_year::Int
+    # How many entries per coordinate?
+    length::Int 
+end
+
+# Hack!! CAUTION DANGER
+# For sparsearrays, if we access an unset index, the code
+# wants to return zero(::Type{T}), but for tuples, this is
+# not defined. Hence, we need to define here what a tuple of
+# zeros should be for a certain type..
+
+function zero(::Type{NTuple{1, T}}) where {T}
+    return (T(0))
+end
+
+function zero(::Type{NTuple{2, T}}) where {T}
+    return (T(0), T(0))
+end
+
+function zero(::Type{NTuple{3, T}}) where {T}
+    return (T(0), T(0), T(0))
 end

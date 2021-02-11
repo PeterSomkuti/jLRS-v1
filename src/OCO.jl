@@ -30,7 +30,7 @@ function convert_OCO_sounding_id_to_date(sounding_id::Int)
     # OCO-type sounding ID must be 16 digits long
     if length(snid) != 16
         @error "Sounding ID $(sonding_id) must be 16 characters/digits long!"
-        return nothing
+        return nothingx
     end
 
     id_year = parse(Int, snid[1:4])
@@ -44,6 +44,11 @@ function convert_OCO_sounding_id_to_date(sounding_id::Int)
     return DateTime(id_year, id_month, id_day,
                     id_hour, id_minute, id_second, id_milli)
 end
+
+function convert_date_to_sounding_id(date::DateTime)
+    
+end
+
 
 function extract_OCO_sounding_id(sounding_id::Int)
     return parse(Int, string(sounding_id)[end])
@@ -77,13 +82,27 @@ function convert_OCO_df_to_scenes(df::DataFrame)
             convert_OCO_sounding_id_to_date(row.sounding_id)
         )
 
+        # solar azimuth (saa) at this point unused!
         this_sza, this_saa = calculate_solar_angles(this_loctime)
+
+        # Obtain irradiance information (downwelling radiace at surface)
+        this_irradiance = calculate_BOA_irradiance(this_sza, 757.0)
+
+        # Calculate PPFD for this scene
+        this_PPFD = calculate_PPFD(this_sza)
 
         # Replace this with samplers
         this_sif = rand()
         this_sif_ucert = rand()
-        this_nirv = rand()
-        this_reflectance = rand()
+
+        this_nir = calculate_reflectance(this_loctime, this_sza, "NIR")
+        this_vis = calculate_reflectance(this_loctime, this_sza, "VIS")
+        this_ndvi = (this_nir - this_vis) / (this_nir + this_vis)
+        this_nirv = this_ndvi * this_nir
+
+        this_reflectance = calculate_reflectance(this_loctime, this_sza, "755")
+
+        # At the moment no cloud or aerosol data
         this_od = 0.0
 
         this_scene = Scene(
@@ -94,7 +113,10 @@ function convert_OCO_df_to_scenes(df::DataFrame)
             this_sif_ucert,
             this_sza, # SZA comes from calculcations (via loctime)
             row.vza, # viewing zenith comes from the instrument
-            this_nirv,
+            this_ndvi, # NDVI from VIIRS
+            this_nirv, # NIRv calculated from NDVI * NIR
+            this_irradiance, # Irradiance at the surface and some ref. wl
+            this_PPFD, # Integrated irradiance at PAR wavelengths
             this_reflectance, # Reflectance comes from BRDF sampling and SZA
             this_od # optical depth may come from ISCCP one day
         )

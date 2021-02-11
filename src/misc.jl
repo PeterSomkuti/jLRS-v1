@@ -89,8 +89,12 @@ function calculate_solar_angles(loctime::GeolocationTime)
     # Compute apparent ALT and AZ of the sun from (lon, lat) position
     sun_alt, sun_az, sun_hour = eq2hor(sun_radec[1], sun_radec[2], jdate, loctime.loc.lat, loctime.loc.lon)
 
-    # Return SZA and SAA in degrees
-    return 90.0 - sun_alt, sun_az
+    if sun_alt < 0
+        return NaN, sun_az
+    else
+        # Return SZA and SAA in degrees
+        return 90.0 - sun_alt, sun_az
+    end
 
 end
 
@@ -137,5 +141,32 @@ function calculate_regular_2d_histogram(lons::Array{<:Number, 1},
     cell_idx = collect(zip(lon_idx, lat_idx))
 
     return (lon_grid, lat_grid), cell_idx
+
+end
+
+function subset_scene_time(IS::InstrumentSampling,
+                           date_min::DateTime,
+                           date_max::DateTime)
+
+    T = typeof(IS)
+
+    # Understand which scene time fall into the time window
+    idx_times = findall(
+        (get_time(IS) .>= date_min) .&
+        (get_time(IS) .<= date_max)
+    )
+
+    # Which of those resulting locations drop out of the locations list?
+    newloc = intersect(
+        get_loc(IS),
+        (p -> p.loctime.loc).(IS.scenes[idx_times])
+    )
+
+    return T(
+        IS.info,
+        IS.instrument,
+        newloc,
+        IS.scenes[idx_times]
+    )
 
 end

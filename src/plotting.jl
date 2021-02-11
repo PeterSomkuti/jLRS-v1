@@ -33,7 +33,8 @@ function build_plot_dataframe(agg::T) where {T}
         SZA = fill(-1.0, N),
         VZA = fill(-1.0, N),
         lon = fill(-999.99, N),
-        lat = fill(-999.99, N)
+        lat = fill(-999.99, N),
+        PPFD = fill(-999.99, N),
         )
 
     last_index = 1
@@ -45,6 +46,7 @@ function build_plot_dataframe(agg::T) where {T}
         df[last_index:last_index + agg[i].N - 1, :VZA] = get_vza.(agg[i].scenes)
         df[last_index:last_index + agg[i].N - 1, :lon] = get_lon.(agg[i].scenes)
         df[last_index:last_index + agg[i].N - 1, :lat] = get_lat.(agg[i].scenes)
+        df[last_index:last_index + agg[i].N - 1, :PPFD] = get_ppfd.(agg[i].scenes)
 
         last_index = last_index + agg[i].N
     end
@@ -79,9 +81,10 @@ function aggregate_overview_vl(agg::Vector{Aggregate})
 
     df_plot = innerjoin(df_modes, df_locs, df_instrument, on=:index)
 
-    # Turn number of scenes per instrument into fraction
+    # Turn number of scenes per instrument into percentage
     for inst in instrument_symbols
-        df_plot[:, inst] ./= df_plot[:, "count"]
+        new_percentage = convert.(Int32, round.(100 .* df_plot[:, inst] ./ df_plot[:, "count"]))
+        df_plot[:, inst] .= new_percentage
     end
 
     #################

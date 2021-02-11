@@ -22,7 +22,7 @@ s1 = jLRS.OCOSampling(-105.0844, # target lon
 s2 = jLRS.OCOSampling(-104.0844, # target lon
                       40.5853, # target lat
                       50, # radius in km
-                      "/home/psomkuti/oco2_new.db")
+                      "/home/psomkuti/oco2.db")
 
 s3 = s1 + s2
 

@@ -10,11 +10,18 @@ using Glob
 using AstroLib
 using DataFrames
 using SQLite
+using SparseArrays
 
 # Type definitions required by the rest of the module
 include("types.jl")
 
-# Common math-y functions (may use jLRS types)
+# Solar data required for many calculations
+include("solar.jl")
+
+# Surface samplings (BRDF, land cover, etc.)
+include("surface.jl")
+
+# Common math-y functions
 include("misc.jl")
 
 # Functions for OCO-type
