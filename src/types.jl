@@ -85,7 +85,7 @@ struct Scene
     # BOA PPFD
     PPFD::Real
     # Surface reflectance (ideally computed from SZA, VZA via BRDF)
-    # such that L_out = reflectance * L_in
+    # such that L_out = reflectance * L_in  * 1000 / pi
     reflectance::Real
     # Total column optical depth (e.g. clouds, aerosols)
     OD::Real
@@ -188,6 +188,7 @@ get_irradiance(S::Scene) = S.irradiance
 get_ndvi(S::Scene) = S.NDVI
 get_nirv(S::Scene) = S.NIRv
 get_instrument(S::Scene) = S.instrument
+get_sif_ucert(S::Scene) = S.SIF_ucert
 
 get_instrument(IS::OCOSampling) = IS.instrument
 
@@ -207,6 +208,7 @@ get_reflectance(IS::InstrumentSampling) = get_reflectance.(IS.scenes)
 get_irradiance(IS::InstrumentSampling) = get_irradiance.(IS.scenes)
 get_ndvi(IS::InstrumentSampling) = get_ndvi.(IS.scenes)
 get_nirv(IS::InstrumentSampling) = get_nirv.(IS.scenes)
+get_sif_ucert(IS::InstrumentSampling) = get_sif_ucert.(IS.scenes)
 
 
 

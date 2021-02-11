@@ -19,8 +19,13 @@ function produce_mode_query(modes::Vector{String}) :: String
 
 end
 
+function extract_OCO_sounding_id(sounding_id::Int)
+    return parse(Int, string(sounding_id)[end])
+end
 
-
+function convert_OCO_sounding_id_to_fp(sounding_id::Int)
+    return(parse(Int, string(sounding_id)[end]))
+end
 
 function convert_OCO_sounding_id_to_date(sounding_id::Int)
 
@@ -45,15 +50,44 @@ function convert_OCO_sounding_id_to_date(sounding_id::Int)
                     id_hour, id_minute, id_second, id_milli)
 end
 
-function convert_date_to_sounding_id(date::DateTime)
-    
+
+
+
+OCO2_noise_dict = Dict(
+    1 => (0.00243, 0.00192),
+    2 => (0.00204, 0.00179),
+    3 => (0.00365, 0.00174),
+    4 => (0.00331, 0.0018) ,
+    5 => (0.00329, 0.00188),
+    6 => (0.00301, 0.00203),
+    7 => (0.00241, 0.00211),
+    8 => (0.00373, 0.00242)
+)
+
+OCO3_noise_dict = Dict(
+    1 => (0.00016, 0.00161),
+    2 => (0.00011, 0.00156),
+    3 => (3.0e-5, 0.00144),
+    4 => (3.0e-5, 0.00135),
+    5 => (0.00011, 0.00131),
+    6 => (0.00021, 0.0014),
+    7 => (0.00037, 0.0015),
+    8 => (0.00034, 0.00164)
+)
+
+
+function calculate_OCO_SIF_uncertainty(continuum::Real, instrument::String, fp::Int)
+    if instrument == "OCO-3"
+        noise_dict = OCO3_noise_dict
+    elseif instrument == "OCO-2"
+        noise_dict = OCO2_noise_dict
+    else
+        @error "Need to be either OCO-2 or OCO-3, but I got $(instrument)."
+    end
+
+
+    return sqrt(noise_dict[fp][1] + noise_dict[fp][2] * continuum)
 end
-
-
-function extract_OCO_sounding_id(sounding_id::Int)
-    return parse(Int, string(sounding_id)[end])
-end
-
 
 function convert_OCO_df_to_scenes(df::DataFrame)
 
@@ -75,6 +109,8 @@ function convert_OCO_df_to_scenes(df::DataFrame)
     # Go through scenes and create scene and location objects
     for row in eachrow(df)
 
+        this_footprint = convert_OCO_sounding_id_to_fp(row.sounding_id)
+
         this_loc = Geolocation(row.lon, row.lat)
 
         this_loctime = GeolocationTime(
@@ -91,16 +127,21 @@ function convert_OCO_df_to_scenes(df::DataFrame)
         # Calculate PPFD for this scene
         this_PPFD = calculate_PPFD(this_sza)
 
-        # Replace this with samplers
-        this_sif = rand()
-        this_sif_ucert = rand()
-
         this_nir = calculate_reflectance(this_loctime, this_sza, "NIR")
         this_vis = calculate_reflectance(this_loctime, this_sza, "VIS")
         this_ndvi = (this_nir - this_vis) / (this_nir + this_vis)
         this_nirv = this_ndvi * this_nir
 
         this_reflectance = calculate_reflectance(this_loctime, this_sza, "755")
+
+        this_TOA_radiance = this_irradiance * this_reflectance * 1000 / pi
+
+        # Replace this with samplers
+        this_sif = rand()
+        this_sif_ucert = calculate_OCO_SIF_uncertainty(this_TOA_radiance,
+                                                       instrument,
+                                                       this_footprint)
+
 
         # At the moment no cloud or aerosol data
         this_od = 0.0
