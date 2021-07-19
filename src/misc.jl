@@ -74,6 +74,20 @@ function check_location_within_radius(lon, lat, radius, location::Geolocation)
 
 end
 
+
+function check_location_within_radius(lon, lat, radius, loctime::GeolocationTime)
+
+    dist = calculate_distance(
+        lon, lat,
+        loctime.loc.lon,
+        loctime.loc.lat
+    )
+
+    return dist <= radius
+
+end
+
+
 """
 
 

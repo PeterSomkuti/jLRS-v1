@@ -1,135 +1,91 @@
-# 1.) Build BRDF data grid from files
-# 2.) Define access functions that operate on those grids
-
-# Populate arrays
-vnp_lons = collect(-180:0.05:180)
-vnp_lats = collect(-90:0.05:90)
-vnp_flist = readdir("/data10/psomkuti/VNP43C1/aggregate_18day")
-# VNP dataset is every six days in the year 2020 (366 days)
 vnp_year = 2020
-vnp_chunk = 18
-# Create an array of DateTimes corresponding to the time slots according
-# to the chunk size (in days). Maxes out at 366 days, so the last chunk
-# will always be shorter if chunk size is not divisible by 366.
-vnp_timebounds = DateTime(2020, 1, 1) .+ (p -> Dates.Day(min(p, 366))).(0:vnp_chunk:366+vnp_chunk)
+vnp_fname = "/home/psomkuti/VNP43C1_2020_full_compressed.h5"
 
-vnp_variables = [
-    ("BRDF_Albedo_Parameter1_nir", 32767),
-    ("BRDF_Albedo_Parameter2_nir", 32767),
-    ("BRDF_Albedo_Parameter3_nir", 32767),
-    ("BRDF_Albedo_Parameter1_vis", 32767),
-    ("BRDF_Albedo_Parameter2_vis", 32767),
-    ("BRDF_Albedo_Parameter3_vis", 32767),
-    ("BRDF_Albedo_Parameter1_M5M7", 32767),
-    ("BRDF_Albedo_Parameter2_M5M7", 32767),
-    ("BRDF_Albedo_Parameter3_M5M7", 32767),
-    ("Percent_Snow", 255),
-]
+function create_VNP_SD_from_locbounds(lon_min::Real, lat_min::Real,
+                                      lon_max::Real, lat_max::Real;
+                                      vnp_fname::String=vnp_fname)
 
-vnp_assignments = Dict(
-    "BRDF_Albedo_NIR" => ["BRDF_Albedo_Parameter1_nir",
-                          "BRDF_Albedo_Parameter2_nir",
-                          "BRDF_Albedo_Parameter3_nir"],
-    "BRDF_Albedo_VIS" => ["BRDF_Albedo_Parameter1_vis",
-                          "BRDF_Albedo_Parameter2_vis",
-                          "BRDF_Albedo_Parameter3_vis"],
-    "BRDF_Albedo_755" => ["BRDF_Albedo_Parameter1_M5M7",
-                          "BRDF_Albedo_Parameter2_M5M7",
-                          "BRDF_Albedo_Parameter3_M5M7"],
-    "Percent_Snow" => ["Percent_Snow"]
-)
+    vnp_h5 = h5open(vnp_fname, "r")
 
-vnp_fill_values = Dict(
-    "BRDF_Albedo_Parameter1_nir" => 32767,
-    "BRDF_Albedo_Parameter2_nir" => 32767,
-    "BRDF_Albedo_Parameter3_nir" => 32767,
-    "BRDF_Albedo_Parameter1_vis" => 32767,
-    "BRDF_Albedo_Parameter2_vis" => 32767,
-    "BRDF_Albedo_Parameter3_vis" => 32767,
-    "BRDF_Albedo_Parameter1_M5M7" => 32767,
-    "BRDF_Albedo_Parameter2_M5M7" => 32767,
-    "BRDF_Albedo_Parameter3_M5M7" => 32767,
-    "Percent_Snow" => 255
-)
+    vnp_lons = collect(-180:0.05:180)
+    vnp_lats = collect(-60:0.05:90)
+    vnp_variables = vnp_h5["names"][:]
+    vnp_fill_values = vnp_h5["fill_values"][:]
+    vnp_year = 2020
+    vnp_times = DateTime(vnp_year, 1, 1) .+ (p -> Dates.Day(min(p, 366))).(0:size(vnp_h5["VNP43C1"])[3] - 1)
 
-vnp_sparse_dict = Dict()
-for var in keys(vnp_assignments)
-    this_N = length(vnp_assignments[var])
-    # This dictionary will be of type (Int32 index -> Tuple Int16s)
-    vnp_sparse_dict[var]= SparseMatrixCSC{NTuple{this_N, Int16}, Int32}[]
-end
-
-@info "Read-IN of VIIRS BRDF data."
-for fname in vnp_flist
-
-    h5open("/data10/psomkuti/VNP43C1/aggregate_18day/" * fname, "r") do h5
-
-        @info "Processing $(fname)"
-        for vgroup in keys(vnp_assignments)
-
-            x_coords = []
-            y_coords = []
-            z_coords = []
-
-            for var in vnp_assignments[vgroup]
-
-                # Remember! in latitude dimension, arrays need to be flipped
-                # so that lower indices are at lower latitudes
-                tmp_data = h5[var][:,:][:,end:-1:1]
-                tmp_idx = findall(tmp_data .!= vnp_fill_values[var])
-
-                push!(x_coords, (p -> p[1]).(tmp_idx))
-                push!(y_coords, (p -> p[2]).(tmp_idx))
-                push!(z_coords, tmp_data[tmp_idx])
-
-            end
-
-            # Results will be all tuples!
-            z_out = collect(zip(z_coords...))
-
-            tmp_sparse = sparse(
-                convert.(Int32, x_coords[1]),
-                convert.(Int32, y_coords[1]),
-                z_out,
-                7200, 3600
-            )
-
-            push!(vnp_sparse_dict[vgroup], tmp_sparse)
-
-        end
+    # Trim down to our Antarctica limit
+    if lat_min < -60
+        lat_min = -59.99999
     end
-end
 
-vnp_surface_data = Dict()
 
-for var in keys(vnp_assignments)
+    idx_lon_min = searchsortedfirst(vnp_lons, lon_min) - 1
+    idx_lon_max = searchsortedfirst(vnp_lons, lon_max) - 1
 
-    vnp_surface_data[var] = VNPSparseData(
-        vnp_sparse_dict[var],
-        vnp_lons,
-        vnp_lats,
-        vnp_timebounds,
+    idx_lat_min = 3001 - searchsortedfirst(vnp_lats, lat_max) + 1
+    idx_lat_max = 3001 - searchsortedfirst(vnp_lats, lat_min) + 1
+
+    #println(idx_lon_min, ": ", vnp_lons[idx_lon_min])
+    #println(idx_lon_max, ": ", vnp_lons[idx_lon_max])
+    #println(idx_lat_min, ": ", vnp_lats[end:-1:1][idx_lat_max])
+    #println(idx_lat_max, ": ", vnp_lats[end:-1:1][idx_lat_min])
+
+    # Load data and flip along lat dimension (original data is in decreasing lats)
+    data = vnp_h5["VNP43C1"][idx_lat_min:idx_lat_max, idx_lon_min:idx_lon_max,:,:][end:-1:1,:,:,:]
+
+    close(vnp_h5)
+
+    return VNPData(
+        data,
+        vnp_lons[idx_lon_min:idx_lon_max+1],
+        vnp_lats[end:-1:1][idx_lat_min:idx_lat_max+1][end:-1:1],
+        vnp_times,
         vnp_year,
-        length(vnp_assignments[var])
+        vnp_variables,
+        vnp_fill_values
     )
 
-    vnp_sparse_dict[var] = Nothing
-
 end
 
-vnp_sparse_dict = Nothing
 
-function sample_surface_data(loctime::GeolocationTime, SD::SurfaceData)
+function sample_vnp_data(loctime::GeolocationTime, var_list, vnp_sd::VNPData)
 
-    #Smoothing out makes things rather slow!
+    if !(typeof(var_list) <: Vector)
+         var_list = [var_list]
+    end 
+
+    for var in var_list
+        if !(var in vnp_sd.names)
+            @error "Sorry! Variable \"$(var)\" not preseng in VNPData object."
+            return nothing
+        end
+        @debug "Variable check OK - all supplied names are found in VNP SD."
+    end
+
+    if ((loctime.loc.lon < vnp_sd.lon_bounds[1]) |
+        (loctime.loc.lon > vnp_sd.lon_bounds[end]))
+        @error "Sorry! Location $(loctime) is outside of longitude bounds!"
+        return nothing
+    end
+
+    if ((loctime.loc.lat < vnp_sd.lat_bounds[1]) |
+        (loctime.loc.lat > vnp_sd.lat_bounds[end]))
+        @error "Sorry! Location $(loctime) is outside of latitude bounds!"
+        return nothing
+    end
+
+
 
     # Find spatial indices
-    idx_x = searchsortedfirst(SD.lon_bounds, loctime.loc.lon) - 1
+    idx_x = searchsortedfirst(vnp_sd.lon_bounds, loctime.loc.lon) - 1
+    idx_y = searchsortedfirst(vnp_sd.lat_bounds, loctime.loc.lat) - 1
+
     #idx_xplus = min(idx_x + 1, length(SD.lon_bounds))
     #idx_xminus = max(idx_x - 1, 1)
     #x_fac = (loctime.loc.lon - SD.lon_bounds[idx_x]) / (SD.lon_bounds[idx_xplus] - SD.lon_bounds[idx_x])
 
-    idx_y = searchsortedfirst(SD.lat_bounds, loctime.loc.lat) - 1
+    #idx_y = searchsortedfirst(SD.lat_bounds, loctime.loc.lat) - 1
     #idx_yplus = min(idx_y + 1, length(SD.lat_bounds))
     #idx_yminus = max(idx_y - 1, 1)
     #y_fac = (loctime.loc.lat - SD.lat_bounds[idx_y]) / (SD.lat_bounds[idx_yplus] - SD.lat_bounds[idx_y])
@@ -140,18 +96,26 @@ function sample_surface_data(loctime::GeolocationTime, SD::SurfaceData)
     #sp_w = [0       (1-y_fac) * w      0;
     #        (1-x_fac) * w    center_weight      (x_fac) * w;
     #        0        (y_fac) * w       0]
+
     # Create new time based on the year of the surface dataset
+    # (just replacing the year according to the dataset year)
     newtime = DateTime(
-        (SD.data_year)...,
-        Dates.yearmonthday(loctime.time)[2:end]...,
-        (Dates.hour(loctime.time))...,
-        (Dates.minute(loctime.time))...,
-        (Dates.second(loctime.time))...
+        vnp_sd.data_year,
+        Dates.month(loctime.time),
+        Dates.day(loctime.time),
+        Dates.hour(loctime.time),
+        Dates.minute(loctime.time),
+        Dates.second(loctime.time)
     )
 
-    idx_t = searchsortedfirst(SD.time_bounds, newtime) - 1
-    idx_tplus = min(idx_t + 1, length(SD.time_bounds) - 1)
-    t_fac = (newtime - SD.time_bounds[idx_t]) / (SD.time_bounds[idx_tplus] - SD.time_bounds[idx_t])
+    idx_t = searchsortedfirst(vnp_sd.time_bounds, newtime) - 1
+
+    idx_var = searchsortedfirst.(Ref(vnp_sd.names), var_list)
+
+    return vnp_sd.data[idx_y, idx_x, idx_t, idx_var]
+
+    #idx_tplus = min(idx_t + 1, length(SD.time_bounds) - 1)
+    #t_fac = (newtime - SD.time_bounds[idx_t]) / (SD.time_bounds[idx_tplus] - SD.time_bounds[idx_t])
 
     #println(idx_tplus, " / ", length(SD.time_bounds))
     #println(loctime)
@@ -165,32 +129,12 @@ function sample_surface_data(loctime::GeolocationTime, SD::SurfaceData)
     #    [round(sum(((p -> p[i]).(sampled)) .* sp_w)) for i in 1:SD.length]...
     #)
 
-    #return (1 - t_fac) .* SD.data[idx_t][idx_x, idx_y] .+ (t_fac .* SD.data[idx_tplus][idx_x, idx_y])
-    return SD.data[idx_t][idx_x, idx_y]
 end
 
-function sample_surface_data_old(loctime::GeolocationTime, SD::SurfaceData)
+function calculate_reflectance(loctime::GeolocationTime, sza::Real, band::String, vnp_sd::VNPData)
 
-    # Find spatial indices
-    idx_x = searchsortedfirst(SD.lon_bounds, loctime.loc.lon) - 1
-    idx_y = searchsortedfirst(SD.lat_bounds, loctime.loc.lat) - 1
-
-    # Create new time based on the year of the surface dataset
-    newtime = DateTime(
-        (SD.data_year)...,
-        Dates.yearmonthday(loctime.time)[2:end]...,
-        (Dates.hour(loctime.time))...,
-        (Dates.minute(loctime.time))...,
-        (Dates.second(loctime.time))...
-    )
-
-    idx_t = searchsortedfirst(SD.time_bounds, newtime) - 1
-
-    return SD.data[idx_t][idx_x, idx_y]
-end
-
-
-function calculate_reflectance(loctime::GeolocationTime, sza::Real, band::String)
+    # Stitch together variable names
+    var_list = ["BRDF_Albedo_Parameter$(i)_$(band)" for i in 1:3]
 
     g0_iso = 1.0
     g1_iso = 0.0
@@ -204,7 +148,21 @@ function calculate_reflectance(loctime::GeolocationTime, sza::Real, band::String
     g1_geo = -0.166314
     g2_geo =  0.041840
 
-    f_iso, f_vol, f_geo = sample_surface_data(loctime, vnp_surface_data["BRDF_Albedo_$(band)"])
+    f_iso, f_vol, f_geo = sample_vnp_data(loctime, var_list, vnp_sd)
+
+    # Replace fill values by NaNs
+
+    if f_iso == 32767
+        f_iso = NaN
+    end
+
+    if f_geo == 32767
+        f_geo = NaN
+    end
+
+    if f_vol == 32767
+        f_vol = NaN
+    end
 
     # Compute black-sky albedo
     sza2 = deg2rad(sza)
@@ -213,8 +171,10 @@ function calculate_reflectance(loctime::GeolocationTime, sza::Real, band::String
     # 1 / 1000.0 factor is needed to convert Int-valued VIIRS data into
     # weights.
 
+    # White sky albedo
     #return (f_iso * 1.0 + f_vol * 0.189184 + f_geo * (-1.377622)) * 0.001
 
+    # Black sky albedo
     return f_iso * 0.001 *  (g0_iso + g1_iso * sza2 + g2_iso * sza3) +
         f_vol * 0.001 * (g0_vol + g1_vol * sza2 + g2_vol * sza3) +
         f_geo * 0.001 * (g0_geo + g1_geo * sza2 + g2_geo * sza3)
@@ -223,8 +183,7 @@ end
 
 function calculate_NDVI(loctime::GeolocationTime, sza::Real)
 
-    R_nir = calculate_reflectance(loctime, sza, "NIR")
-    R_vis = calculate_reflectance(loctime, sza, "VIS")
+    R_nir, R_vis = calculate_reflectance(loctime, sza, ["M7", "M5"])
 
     if R_nir == 0.0
         return 0.0

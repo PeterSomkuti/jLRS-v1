@@ -81,7 +81,7 @@ function aggregate_scenes(IS::InstrumentSampling,
     end_date = get_time(IS)[time_idx[end]]
 
     # This is the time boundary grid
-    time_boundary = collect(start_date:Dates.Second(TS.period):end_date)
+    time_boundary = collect(start_date:Dates.Second(TS.period):end_date+Dates.Second(TS.period))
 
     # Compute spatial aggregation here
     spatial_bound, spatial_idx = compute_2d_boundaries_indices(
@@ -158,3 +158,84 @@ function aggregate_scenes(IS::InstrumentSampling,
 
 end
 
+function calculate_light_response_curve(v_agg::Vector{Aggregate})
+
+    N = (x -> x.N).(v_agg)
+
+    # Calculate the PPFDs for each aggregate
+    ppfd_means = (x -> mean(get_ppfd.(x.scenes))).(v_agg)
+    ppfd_std = (x -> std(get_ppfd.(x.scenes))).(v_agg)
+
+    # Obtain the SIF values
+
+    # 1) SIF aggregate mean
+    sif_means = (x -> mean(get_sif.(x.scenes))).(v_agg)
+    sif_std = (x -> std(get_sif.(x.scenes))).(v_agg)
+    # 2) SIF aggregate uncertainty is calculated using the
+    #    per-retrieval uncertainty values
+    sif_ucerts = (x -> sqrt(1.0 / sum(1.0 ./ (get_sif_ucert.(x.scenes) .^2)))).(v_agg)
+
+    # 3) Get NIRv (radiance), which is NIR (reflectance) * NDVI * NIR (radiance)
+    nirv_means = (x -> mean(get_nirv_radiance.(x.scenes))).(v_agg)
+
+
+    # 4) Calculate some uncertainty for NIRv (radiance)
+
+    # Assume an uncertainty of 2% for radiance
+    # https://www.spiedigitallibrary.org/journals/journal-of-applied-remote-sensing/volume-12/issue-3/034001/Updates-of-Moderate-Resolution-Imaging-Spectroradiometer-on-orbit-calibration-uncertainty/10.1117/1.JRS.12.034001.full
+
+    # These are lists of lists
+    # scenes of aggregates
+    nir_agg = (x -> get_nir.(x.scenes)).(v_agg)
+    vis_agg = (x -> get_vis.(x.scenes)).(v_agg)
+
+    # Construct the per-scene uncertainties for any NIRv
+    nirv_ucerts = []
+
+    for agg in 1:length(v_agg)
+
+        # These are now lists (scenes)
+        nir = nir_agg[agg]
+        vis = vis_agg[agg]
+
+        scene_ucerts = []
+        for s in 1:v_agg[agg].N
+
+            # say .. some percent of its value?
+            ucert_nir = 0.02 * nir[s]
+            ucert_vis = 0.02 * vis[s]
+
+            x = 1.0 / (nir[s] + vis[s])^2
+            x *= sqrt(
+                4 * nir[s]^4 * ucert_vis^2
+                + (nir[s]^2 + vis[s]^2 - 2 * nir[s] * vis[s])^2
+                * ucert_nir^2
+            )
+
+            this_sza = get_sza(v_agg[agg].scenes[s])
+            x *= calculate_BOA_irradiance(this_sza, 865.0) * 1000 / pi
+
+            push!(scene_ucerts, x)
+
+        end
+
+        push!(nirv_ucerts, sqrt(1.0 / sum(1.0 ./ (scene_ucerts .^ 2))))
+
+    end
+
+
+    # 5) Construct the SIF / NIRv (radiance) ratio along with
+    #    the uncertainties
+
+    ratio = sif_means ./ nirv_means
+
+    ratio_ucert = sqrt.((ratio .^2) .* (
+        (sif_ucerts ./ sif_means) .^ 2 +
+        (nirv_ucerts ./ nirv_means) .^ 2
+    ))
+
+
+    return N, ppfd_means, ratio, ratio_ucert
+
+
+end

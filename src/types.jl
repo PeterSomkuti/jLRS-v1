@@ -52,7 +52,6 @@ struct GeolocationTime <: AbstractLocation
     time::DateTime
 end
 
-
 """
     Scene
 
@@ -76,10 +75,16 @@ struct Scene
     SZA::Real
     # viewing zenith angle
     VZA::Real
+    # NIR radiance
+    NIR::Real
+    # VIS radiance
+    VIS::Real
     # NDVI
     NDVI::Real
-    # NIRv
+    # NIRv (reflectance)
     NIRv::Real
+    # NIRv (radiance)
+    NIRv_radiance::Real
     # BOA irradiance in SIF units W/m2/nm/sr
     irradiance::Real
     # BOA PPFD
@@ -131,7 +136,19 @@ end
 
 # Think "repeated Granule"
 struct GeostationaryIntensiveSampling<:InstrumentSampling
+    # Information about how this object was created
+    info::String
 
+    # Which instrument(s)?
+    instrument::Vector{String}
+
+    # Scene locations obtained from files
+    locations::Vector{Geolocation}
+
+    # This is merely an array of scenes which are
+    # obtained through files. Can be of different
+    # dimensions than scenelocs
+    scenes::Vector{Scene}
 end
 
 # OCO-2/3 type sampling pattern (this uses real data)
@@ -150,6 +167,24 @@ struct OCOSampling<:InstrumentSampling
     # dimensions than scenelocs
     scenes::Vector{Scene}
 end
+
+# Orbiter with a grating-type nadir-looking swath instrument (e.g. TROPOMI, CO2M)
+struct NadirSwathOrbiterSampling<:InstrumentSampling
+    # Information about how this object was created
+    info::String
+
+    # Which instrument(s)?
+    instrument::Vector{String}
+
+    # Scene locations obtained from files
+    locations::Vector{Geolocation}
+
+    # This is merely an array of scenes which are
+    # obtained through files. Can be of different
+    # dimensions than scenelocs
+    scenes::Vector{Scene}
+end
+
 
 # Some new combined sampling
 # (fill this in when you have a better idea of what to do with mixed samplings)
@@ -181,16 +216,22 @@ get_lat(S::Scene) = S.loctime.loc.lat
 get_time(S::Scene) = S.loctime.time
 get_mode(S::Scene) = S.mode
 get_sza(S::Scene) = S.SZA
+get_mu0(S::Scene) = cos(deg2rad(S.SZA))
 get_vza(S::Scene) = S.VZA
+get_nir(S::Scene) = S.NIR
+get_vis(S::Scene) = S.VIS
+get_sif(S::Scene) = S.SIF
 get_ppfd(S::Scene) = S.PPFD
 get_reflectance(S::Scene) = S.reflectance
 get_irradiance(S::Scene) = S.irradiance
 get_ndvi(S::Scene) = S.NDVI
 get_nirv(S::Scene) = S.NIRv
+get_nirv_radiance(S::Scene) = S.NIRv_radiance
 get_instrument(S::Scene) = S.instrument
 get_sif_ucert(S::Scene) = S.SIF_ucert
 
 get_instrument(IS::OCOSampling) = IS.instrument
+get_instrument(IS::GeostationaryIntensiveSampling) = IS.instrument
 
 get_loc(IS::InstrumentSampling) = IS.locations
 get_loc_lons(IS::InstrumentSampling) = (p -> p.lon).(IS.locations)
@@ -202,12 +243,16 @@ get_lon(IS::InstrumentSampling) = get_lon.(IS.scenes)
 get_lat(IS::InstrumentSampling) = get_lat.(IS.scenes)
 get_sza(IS::InstrumentSampling) = get_sza.(IS.scenes)
 get_vza(IS::InstrumentSampling) = get_vza.(IS.scenes)
+get_nir(IS::InstrumentSampling) = get_nir.(IS.scenes)
+get_vis(IS::InstrumentSampling) = get_vis.(IS.scenes)
+get_sif(IS::InstrumentSampling) = get_sif.(IS.scenes)
 get_mode(IS::InstrumentSampling) = get_mode.(IS.scenes)
 get_ppfd(IS::InstrumentSampling) = get_ppfd.(IS.scenes)
 get_reflectance(IS::InstrumentSampling) = get_reflectance.(IS.scenes)
 get_irradiance(IS::InstrumentSampling) = get_irradiance.(IS.scenes)
 get_ndvi(IS::InstrumentSampling) = get_ndvi.(IS.scenes)
 get_nirv(IS::InstrumentSampling) = get_nirv.(IS.scenes)
+get_nirv_radiance(IS::InstrumentSampling) = get_nirv_radiance.(IS.scenes)
 get_sif_ucert(IS::InstrumentSampling) = get_sif_ucert.(IS.scenes)
 
 
@@ -349,6 +394,11 @@ struct RegularTemporalSampling<:TemporalSampling
     period::Real
 end
 
+function HourlySampling(interval::Number)
+    # There are 60 * 60 = 3600 seconds in an hour
+    return RegularTemporalSampling(3600 * interval)
+end
+
 function WeeklySampling(interval::Number)
     # There are 60 * 60 * 24 * 7 = 604800 seconds in a week
     return RegularTemporalSampling(604800 * interval)
@@ -407,30 +457,27 @@ end
 
 abstract type SurfaceData end
 
-struct VNPSparseData <: SurfaceData
-    data::Vector{SparseMatrixCSC}
+struct VNPData <: SurfaceData
+    data::Array{Int, 4} ## Lat, Lon, DOY, variable
     lon_bounds::Vector{Real}
     lat_bounds::Vector{Real}
     time_bounds::Vector{DateTime}
     data_year::Int
     # How many entries per coordinate?
-    length::Int 
+    names::Vector{String}
+    fill_values::Vector{Real}
 end
 
-# Hack!! CAUTION DANGER
-# For sparsearrays, if we access an unset index, the code
-# wants to return zero(::Type{T}), but for tuples, this is
-# not defined. Hence, we need to define here what a tuple of
-# zeros should be for a certain type..
 
-function zero(::Type{NTuple{1, T}}) where {T}
-    return (T(0))
-end
+# Struct to hold SIF data given some lon/lat boundaries
+# that can then be sampled by the sampling functions
 
-function zero(::Type{NTuple{2, T}}) where {T}
-    return (T(0), T(0))
-end
+abstract type SIFData end
 
-function zero(::Type{NTuple{3, T}}) where {T}
-    return (T(0), T(0), T(0))
+struct TROPOMISIFData <: SIFData
+    data::Array{Float32, 3} ### Lat, Lon, Month
+    lon_bounds::Vector{Real}
+    lat_bounds::Vector{Real}
+    time_bounds::Vector{DateTime}
+    fill_values::Real
 end

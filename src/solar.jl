@@ -64,16 +64,17 @@ function create_solar_data(h5) :: SolarData
     hcNA_inv = 8.359347229111778 # 1 / (h * c * NA)
 
     # Use a wavelength iterator
-    # (which can be different from the wavelengtsh supplied in the file..)
+    # (which can be different from the wavelengths supplied in the file..)
+    # PPFD is integrated along the visible spectrum, so we say 400 to 700
     this_wl = 400:1:700
     for (i, this_sza) in enumerate(sza_vec)
-        rad = sdict["GHI"].(this_wl, Ref(this_sza))
-        f = rad .* this_wl
+        rad = sdict["GHI"].(this_wl, Ref(this_sza)) # This is in W/m2
+        f = rad .* this_wl # why do we have to do this?
 
         PPFD = 0.0
         # Integrate spectrum from 400nm to 700nm
-        for i in 2:length(this_wl)
-            PPFD += 0.5 * (f[i-1] + f[i]) * (this_wl[i] - this_wl[i-1])
+        for j in 2:length(this_wl)
+            PPFD += 0.5 * (f[j-1] + f[j]) * (this_wl[j] - this_wl[j-1])
         end
 
         # Factor of 1000 needed to get to umol/s/m2
@@ -100,8 +101,11 @@ solardata = create_solar_data(solar_h5)
 
 function calculate_BOA_irradiance(sza::Real, wavelength::Real; solardata=solardata)
 
-    return solardata.GHI(wavelength, sza)
-
+    if isnan(sza)
+        return NaN
+    else
+        return solardata.GHI(wavelength, sza)
+    end
 end
 
 function calculate_PPFD(sza::Real; solardata=solardata)
