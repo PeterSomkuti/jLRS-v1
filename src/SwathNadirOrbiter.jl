@@ -1,15 +1,18 @@
-tropomi_tle = """
+tropomi_tle_string = """
        S5P
        1 42969U 17064A   21193.45435625 -.00000014  00000-0  14036-4 0  9992
        2 42969  98.7381 133.0236 0001130  90.2950 269.8356 14.19543373194087
        """
+
+
 
 function intersect_with_wgs84!(
     origin,
     look_vector,
     output,
     a=6378137.0, # m
-    b=6356752.314245) # m
+    b=6356752.314245 # m
+    )
 
     x, y, z = origin
     u, v, w = look_vector
@@ -30,10 +33,12 @@ function NadirSwathOrbiterSampling(
     radius::Real,
     start_time::DateTime,
     end_time::DateTime,
-    tle_string::String,
+    tle_string_OR_kepler,
     field_of_view::Real,
     N_pixel::Integer,
-    exposure_time::Real
+    exposure_time::Real,
+    uncertainty_function::Function;
+    instrument::String="instrument"
     )
 
     locarray = Geolocation[]
@@ -59,8 +64,27 @@ function NadirSwathOrbiterSampling(
     sounding_lons = Float32[]
     sounding_lats = Float32[]
 
-    tle = read_tle_from_string(tle_string)
-    orbp = init_orbit_propagator(Val(:sgp4), tle[1])
+    # Check the type of 
+    if tle_string_OR_kepler isa String
+
+        tle_string = tle_string_OR_kepler
+        tle = read_tle_from_string(tle_string)
+        orbp = init_orbit_propagator(Val(:sgp4), tle[1])
+
+    elseif tle_string_OR_kepler isa KeplerianElements
+
+        k = tle_string_OR_kepler
+        orbp = init_orbit_propagator(Val(:J4),
+                                     k.t, # epoch
+                                     k.a, # semi-major axis [m]
+                                     k.e, # eccentricity
+                                     k.i, # inclination [rad]
+                                     k.Ω, # right ascension of ascending node [rad]
+                                     k.ω, # argument of perigee / periapsis [rad],
+                                     k.f  # true anomaly [rad] 
+                                     )
+
+    end
 
     # Array of angles (swath angles away from full nadir)
     theta_array_deg = collect(-N_pixel//2:1:N_pixel//2) .* (field_of_view / N_pixel) # TROPOMI: 216 pixels with 0.5 deg each
@@ -110,6 +134,8 @@ function NadirSwathOrbiterSampling(
     # be modified.
     current_time = start_time
 
+    pasted_swath_width = false
+
     while current_time <= end_time
 
         # Increment by exposure time
@@ -142,8 +168,6 @@ function NadirSwathOrbiterSampling(
         this_lat, this_lon, this_alt = ecef_to_geodetic(r_itrf)
         sat_lon = rad2deg(this_lon)
         sat_lat = rad2deg(this_lat)
-        #push!(sat_lons, rad2deg(this_lon))
-        #push!(sat_lats, rad2deg(this_lat))
 
         # Normalized vector pointing from the satellite down
         # to center of the Earth
@@ -243,6 +267,11 @@ function NadirSwathOrbiterSampling(
         distance_swath = calculate_distance(swath_end_lons[1], swath_end_lats[1],
                                             swath_end_lons[2], swath_end_lats[2])
 
+        if ~pasted_swath_width
+            println("Swath width: $(distance_swath)")
+            pasted_swath_width = true
+        end
+
         # Distance between subsatellite point and target ROI center
         distance_ss_to_ROI_center = calculate_distance(
             sat_lon, sat_lat,
@@ -306,75 +335,16 @@ function NadirSwathOrbiterSampling(
                 if (_tmp > 1) & (_tmp < 1 + 1e-6)
                     _tmp = 1.0
                 end
+
                 this_vza = rad2deg(acos(_tmp))
 
-                # Obtain irradiance information (downwelling radiance at surface), already SZA-corrected
-                # (unlike in L2 algorithms, where irradiance needs to be multiplied by
-                #  mu0 to account for normal component)
-                this_irradiance = calculate_BOA_irradiance(this_sza, 757.0)
-
-                # Calculate PPFD for this scene
-                this_PPFD = calculate_PPFD(this_sza)
-
-                # black sky albedos from BRDFs?
-                this_nir = calculate_reflectance(this_loctime, this_sza, "M7", vnp_sd)
-                this_vis = calculate_reflectance(this_loctime, this_sza, "M5", vnp_sd)
-
-                # These wavelengths are for VIIRS M5 and M7,
-                # factor of 1000 takes us from W/m2/nm/sr to W/m2/um/sr
-                this_nir_radiance = this_nir * calculate_BOA_irradiance(this_sza, 865.0) * 1000 / pi
-                this_vis_radiance = this_vis * calculate_BOA_irradiance(this_sza, 672.0) * 1000 / pi
-
-                this_ndvi = (this_nir - this_vis) / (this_nir + this_vis)
-
-                this_nirv = this_ndvi * this_nir
-                this_nirv_radiance = this_nirv * calculate_BOA_irradiance(this_sza, 865.0) * 1000 / pi
-
-                # Reflectance at ~757 nm is roughly between VIIRS bands M5 and M7
-                refl_M5 = calculate_reflectance(this_loctime, this_sza, "M5", vnp_sd)
-                refl_M7 = calculate_reflectance(this_loctime, this_sza, "M7", vnp_sd)
-
-                this_reflectance = 0.5 * (refl_M5 + refl_M7)
-
-                # irradiance is in /nm, but we want /um
-                this_TOA_radiance = this_irradiance * this_reflectance * 1000 / pi
-
-                # This is in W/m2/sr/um
-                this_sif = model_fluorescence(
-                    this_PPFD,
-                    25.0,
-                    200.0,
-                    209.0,
-                    757.0, # wavelength in nm
-                    this_ndvi
-                )
-
-                #println(this_sif, this_PPFD, this_ndvi)
-
-                # Ask Philipp?
-                this_sif_ucert = 0.0
-
-                # At the moment no cloud or aerosol data,
-                # could add ISCCP sampler in here
-                this_od = 0.0
-
-                this_scene = Scene(
-                    "instrument",
-                    "nadir", # sampling mode comes from the instrument
-                    this_loctime, # location time comes from the instrument
-                    this_sif,
-                    this_sif_ucert,
-                    this_sza, # SZA comes from calculcations (via loctime)
-                    this_vza, # viewing zenith comes from the instrument,
-                    this_nir, # NIR reflectance
-                    this_vis, # VIS reflectance
-                    this_ndvi, # NDVI from VIIRS
-                    this_nirv, # NIRv calculated from NDVI * NIR
-                    this_nirv_radiance, # NIRv * L0(868nm)
-                    this_irradiance, # Irradiance at the surface and some ref. wl
-                    this_PPFD, # Integrated irradiance at PAR wavelengths 400nm to 700nm
-                    this_reflectance, # Reflectance comes from BRDF sampling and SZA
-                    this_od # optical depth may come from ISCCP one day
+                this_scene = create_SIF_scene(
+                    instrument,
+                    "nadir",
+                    this_loctime,
+                    this_vza,
+                    uncertainty_function,
+                    vnp_sd
                 )
 
                 push!(locarray, this_loc)

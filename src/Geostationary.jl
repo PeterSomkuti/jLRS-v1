@@ -168,75 +168,31 @@ function GeostationaryIntensiveSampling(
                 current_frame_time
             )
 
-            # solar azimuth (saa) at this point unused!
-            this_sza, this_saa = calculate_solar_angles(this_loctime)
+            # #############################
+            # Calculate viewing zenith here
+            # #############################
+            #
+            # Position of scene in ECEF
+            r_location = geodetic_to_ecef(this_loc.lon, this_loc.lat, 0.0)
+            # Position of satellite in ECEF
+            r_satellite = geodetic_to_ecef(central_longitude, 0.0, 0.0)
+            # Normalized location
+            r_norm = normalize(r_location)
+            r_loc_to_sat_norm = normalize(r_satellite - r_location)
+            _tmp = dot(r_loc_to_sat_norm, r_norm)
+            if (_tmp > 1) & (_tmp < 1 + 1e-6)
+                _tmp = 1.0
+            end
 
-            # Obtain irradiance information (downwelling radiance at surface),
-            # already SZA-corrected!
-            # (unlike in L2 algorithms, where irradiance needs to be multiplied by
-            #  mu0 to account for normal component)
-            this_irradiance = calculate_BOA_irradiance(this_sza, 757.0)
+            this_vza = rad2deg(acos(_tmp))
 
-            # Calculate PPFD for this scene
-            this_PPFD = calculate_PPFD(this_sza)
-
-            # black sky albedos from BRDFs?
-            this_nir = calculate_reflectance(this_loctime, this_sza, "M7", vnp_sd)
-            this_vis = calculate_reflectance(this_loctime, this_sza, "M5", vnp_sd)
-
-            # These wavelengths are for VIIRS M5 and M7,
-            # factor of 1000 takes us from W/m2/nm/sr to W/m2/um/sr
-            this_nir_radiance = this_nir * calculate_BOA_irradiance(this_sza, 865.0) * 1000 / pi
-            this_vis_radiance = this_vis * calculate_BOA_irradiance(this_sza, 672.0) * 1000 / pi
-
-            this_ndvi = (this_nir - this_vis) / (this_nir + this_vis)
-
-            this_nirv = this_ndvi * this_nir
-            this_nirv_radiance = this_nirv * calculate_BOA_irradiance(this_sza, 865.0) * 1000 / pi 
-
-            # Reflectance at ~757 nm is roughly between VIIRS bands M5 and M7
-            refl_M5 = calculate_reflectance(this_loctime, this_sza, "M5", vnp_sd)
-            refl_M7 = calculate_reflectance(this_loctime, this_sza, "M7", vnp_sd)
-
-            this_reflectance = 0.5 * (refl_M5 + refl_M7)
-
-            # irradiance is in /nm, but we want /um
-            this_TOA_radiance = this_irradiance * this_reflectance * 1000 / pi
-
-            # This is in W/m2/sr/um
-            this_sif = model_fluorescence(
-                this_PPFD,
-                25.0,
-                200.0,
-                209.0,
-                757.0, # wavelength in nm
-                this_ndvi
-            )
-
-            # Estimate sigma based on empirical GeoCarb model
-            this_sif_ucert = calculate_geocarb_uncertainty(this_TOA_radiance)
-
-            # At the moment no cloud or aerosol data,
-            # could add ISCCP sampler in here
-            this_od = 0.0
-
-            this_scene = Scene(
+            this_scene = create_SIF_scene(
                 instrument,
-                "N/A", # sampling mode comes from the instrument
-                this_loctime, # location time comes from the instrument
-                this_sif,
-                this_sif_ucert,
-                this_sza, # SZA comes from calculcations (via loctime)
-                0.0, # viewing zenith comes from the instrument,
-                this_nir, # NIR reflectance
-                this_vis, # VIS reflectance
-                this_ndvi, # NDVI from VIIRS
-                this_nirv, # NIRv calculated from NDVI * NIR
-                this_nirv_radiance, # NIRv * L0(868nm)
-                this_irradiance, # Irradiance at the surface and some ref. wl
-                this_PPFD, # Integrated irradiance at PAR wavelengths 400nm to 700nm
-                this_reflectance, # Reflectance comes from BRDF sampling and SZA
-                this_od # optical depth may come from ISCCP one day
+                "N/A",
+                this_loctime,
+                this_vza,
+                calculate_geocarb_uncertainty,
+                vnp_sd
             )
 
             push!(scenearray, this_scene)

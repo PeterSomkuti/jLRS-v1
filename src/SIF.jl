@@ -379,3 +379,95 @@ function model_fluorescence(
     # this final quantity should be roughly peaking around 1-3 W/m2/sr/um
 
 end
+
+
+function create_SIF_scene(
+    instrument::String,
+    mode::String,
+    loctime::GeolocationTime,
+    vza::Real,
+    uncertainty_function::Function,
+    vnp_sd::VNPData
+    )
+
+    # solar azimuth (saa) at this point unused!
+    this_sza, this_saa = calculate_solar_angles(loctime)
+
+    # Obtain irradiance information (downwelling radiance at surface), already SZA-corrected
+    # (unlike in L2 algorithms, where irradiance needs to be multiplied by
+    #  mu0 to account for normal component)
+    this_irradiance = calculate_BOA_irradiance(this_sza, 757.0)
+
+    # Calculate PPFD for this scene
+    this_PPFD = calculate_PPFD(this_sza)
+
+    # black sky albedos from BRDFs?
+    this_nir = calculate_reflectance(loctime, this_sza, "M7", vnp_sd)
+    this_vis = calculate_reflectance(loctime, this_sza, "M5", vnp_sd)
+
+    # These wavelengths are for VIIRS M5 and M7,
+    # factor of 1000 takes us from W/m2/nm/sr to W/m2/um/sr
+    this_nir_radiance = this_nir * calculate_BOA_irradiance(this_sza, 865.0) * 1000 / pi
+    this_vis_radiance = this_vis * calculate_BOA_irradiance(this_sza, 672.0) * 1000 / pi
+
+    this_ndvi = (this_nir - this_vis) / (this_nir + this_vis)
+
+    this_nirv = this_ndvi * this_nir
+    this_nirv_radiance = this_nirv * calculate_BOA_irradiance(this_sza, 865.0) * 1000 / pi
+
+    # Reflectance at ~757 nm is roughly between VIIRS bands M5 and M7
+    refl_M5 = calculate_reflectance(loctime, this_sza, "M5", vnp_sd)
+    refl_M7 = calculate_reflectance(loctime, this_sza, "M7", vnp_sd)
+
+    this_reflectance = 0.5 * (refl_M5 + refl_M7)
+
+    # irradiance is in /nm, but we want /um
+    this_TOA_radiance = this_irradiance * this_reflectance * 1000 / pi
+
+    # This is in W/m2/sr/um
+    this_sif = model_fluorescence(
+        this_PPFD,
+        25.0,
+        200.0,
+        209.0,
+        757.0, # wavelength in nm
+        this_ndvi
+    )
+
+    # The function needed to calculate the uncertainty must be supplied
+    this_sif_ucert = uncertainty_function(this_TOA_radiance)
+
+    # Noisified SIF
+    if this_sif_ucert > 0.
+        this_measured_sif = rand(Normal(this_sif, this_sif_ucert))
+    else
+        this_measured_sif = this_sif
+    end
+
+    # At the moment no cloud or aerosol data,
+    # could add ISCCP sampler in here
+    this_od = 0.0
+
+    this_scene = Scene(
+        instrument,
+        mode, # sampling mode comes from the instrument
+        loctime, # location time comes from the instrument
+        this_measured_sif,
+        this_sif,
+        this_sif_ucert,
+        this_sza, # SZA comes from calculcations (via loctime)
+        vza, # viewing zenith comes from the instrument,
+        this_nir, # NIR reflectance
+        this_vis, # VIS reflectance
+        this_ndvi, # NDVI from VIIRS
+        this_nirv, # NIRv calculated from NDVI * NIR
+        this_nirv_radiance, # NIRv * L0(868nm)
+        this_irradiance, # Irradiance at the surface and some ref. wl
+        this_PPFD, # Integrated irradiance at PAR wavelengths 400nm to 700nm
+        this_reflectance, # Reflectance comes from BRDF sampling and SZA
+        this_od # optical depth may come from ISCCP one day
+    )
+
+    return this_scene
+
+end

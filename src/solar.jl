@@ -52,7 +52,7 @@ function create_solar_data(h5) :: SolarData
     for var in ["GHI", "tgas", "trayleigh"]
 
         tmp_itp = interpolate(solar_h5[var][:,:], BSpline(Linear()))
-        tmp_sitp = scale(tmp_itp, wl_range, sza_range)
+        tmp_sitp = Interpolations.scale(tmp_itp, wl_range, sza_range)
 
         sdict[var] = tmp_sitp
     end
@@ -83,7 +83,7 @@ function create_solar_data(h5) :: SolarData
     end
 
     PPFD_itp = interpolate(PPFD_table, BSpline(Linear()))
-    sdict["PPFD"] = scale(PPFD_itp, sza_range)
+    sdict["PPFD"] = Interpolations.scale(PPFD_itp, sza_range)
 
     return SolarData(
         sza_vec,

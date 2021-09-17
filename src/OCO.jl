@@ -148,91 +148,20 @@ function convert_OCO_df_to_scenes(df::DataFrame)
             convert_OCO_sounding_id_to_date(row.sounding_id)
         )
 
-        # solar azimuth (saa) at this point unused!
-        this_sza, this_saa = calculate_solar_angles(this_loctime)
-
-        # Obtain irradiance information (downwelling radiance at surface), already SZA-corrected
-        # (unlike in L2 algorithms, where irradiance needs to be multiplied by
-        #  mu0 to account for normal component)
-        this_irradiance = calculate_BOA_irradiance(this_sza, 757.0)
-
-        # Calculate PPFD for this scene
-        this_PPFD = calculate_PPFD(this_sza)
-
-        # black sky albedos from BRDFs?
-        this_nir = calculate_reflectance(this_loctime, this_sza, "M7", vnp_sd)
-        this_vis = calculate_reflectance(this_loctime, this_sza, "M5", vnp_sd)
-
-        # These wavelengths are for VIIRS M5 and M7,
-        # factor of 1000 takes us from W/m2/nm/sr to W/m2/um/sr
-        this_nir_radiance = this_nir * calculate_BOA_irradiance(this_sza, 865.0) * 1000 / pi 
-        this_vis_radiance = this_vis * calculate_BOA_irradiance(this_sza, 672.0) * 1000 / pi
-
-        this_ndvi = (this_nir - this_vis) / (this_nir + this_vis)
-
-        this_nirv = this_ndvi * this_nir
-        this_nirv_radiance = this_nirv * calculate_BOA_irradiance(this_sza, 865.0) * 1000 / pi 
-
-        # Reflectance at ~757 nm is roughly between VIIRS bands M5 and M7
-        refl_M5 = calculate_reflectance(this_loctime, this_sza, "M5", vnp_sd)
-        refl_M7 = calculate_reflectance(this_loctime, this_sza, "M7", vnp_sd)
-
-        this_reflectance = 0.5 * (refl_M5 + refl_M7)
-
-        # irradiance is in /nm, but we want /um
-        this_TOA_radiance = this_irradiance * this_reflectance * 1000 / pi
-
-        # Replace this with SIF model
-
-        # Obtain photosynthetic yield parameters from model
-        #=
-        photo_yields = photosynthetic_yields(
-            [this_PPFD], # Q in umol PPFD m^-2 s^-1
-            25.0, # leaf temp in C
-            200.0, # CO2 pp in ubar
-            209.0, # O2 pp in mbar
-            alpha_opt="static"
-        )
-        =#
-
-        #this_sif = calculate_tropomi_sif(this_loctime, this_sza, tropomi_data)
-
-        # This is in W/m2/sr/um
-        this_sif = model_fluorescence(
-            this_PPFD,
-            25.0,
-            200.0,
-            209.0,
-            757.0, # wavelength in nm
-            this_ndvi
-        )
-
-        # Estimate sigma based on OCO model
-        this_sif_ucert = calculate_OCO_SIF_uncertainty(this_TOA_radiance,
-                                                       instrument,
-                                                       this_footprint)
-
-        # At the moment no cloud or aerosol data,
-        # could add ISCCP sampler in here
-        this_od = 0.0
-
-        this_scene = Scene(
+        # New unction for this particular footprint
+        this_ucert_function(x) = calculate_OCO_SIF_uncertainty(
+            x,
             instrument,
-            row.mode, # sampling mode comes from the instrument
-            this_loctime, # location time comes from the instrument
-            this_sif,
-            this_sif_ucert,
-            this_sza, # SZA comes from calculcations (via loctime)
-            row.vza, # viewing zenith comes from the instrument,
-            this_nir, # NIR reflectance
-            this_vis, # VIS reflectance
-            this_ndvi, # NDVI from VIIRS
-            this_nirv, # NIRv calculated from NDVI * NIR
-            this_nirv_radiance, # NIRv * L0(868nm)
-            this_irradiance, # Irradiance at the surface and some ref. wl
-            this_PPFD, # Integrated irradiance at PAR wavelengths 400nm to 700nm
-            this_reflectance, # Reflectance comes from BRDF sampling and SZA
-            this_od # optical depth may come from ISCCP one day
+            this_footprint
+        )
+
+        this_scene = create_SIF_scene(
+            instrument,
+            row.mode,
+            this_loctime,
+            row.vza,
+            this_ucert_function,
+            vnp_sd
         )
 
         push!(locarray, this_loc)

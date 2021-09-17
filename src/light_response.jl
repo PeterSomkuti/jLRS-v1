@@ -158,7 +158,7 @@ function aggregate_scenes(IS::InstrumentSampling,
 
 end
 
-function calculate_light_response_curve(v_agg::Vector{Aggregate})
+function calculate_light_response_curve(v_agg::Vector{Aggregate}; sif_truth=false)
 
     N = (x -> x.N).(v_agg)
 
@@ -169,8 +169,13 @@ function calculate_light_response_curve(v_agg::Vector{Aggregate})
     # Obtain the SIF values
 
     # 1) SIF aggregate mean
-    sif_means = (x -> mean(get_sif.(x.scenes))).(v_agg)
-    sif_std = (x -> std(get_sif.(x.scenes))).(v_agg)
+    if sif_truth
+        sif_means = (x -> mean(get_sif_truth.(x.scenes))).(v_agg)
+        sif_std = (x -> std(get_sif_truth.(x.scenes))).(v_agg)
+    else
+        sif_means = (x -> mean(get_sif.(x.scenes))).(v_agg)
+        sif_std = (x -> std(get_sif.(x.scenes))).(v_agg)
+    end
     # 2) SIF aggregate uncertainty is calculated using the
     #    per-retrieval uncertainty values
     sif_ucerts = (x -> sqrt(1.0 / sum(1.0 ./ (get_sif_ucert.(x.scenes) .^2)))).(v_agg)

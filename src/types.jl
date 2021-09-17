@@ -67,8 +67,10 @@ struct Scene
     mode::String
     # Location and time of scene
     loctime::GeolocationTime
-    # SIF value
+    # Measured SIF value (noisy-fied truth, mimicks real measurement)
     SIF::Real
+    # Modelled SIF truth (no noise)
+    SIF_truth::Real
     # SIF single-sounding uncertainty
     SIF_ucert::Real
     # solar zenith angle
@@ -221,6 +223,7 @@ get_vza(S::Scene) = S.VZA
 get_nir(S::Scene) = S.NIR
 get_vis(S::Scene) = S.VIS
 get_sif(S::Scene) = S.SIF
+get_sif_truth(S::Scene) = S.SIF_truth
 get_ppfd(S::Scene) = S.PPFD
 get_reflectance(S::Scene) = S.reflectance
 get_irradiance(S::Scene) = S.irradiance
@@ -246,6 +249,7 @@ get_vza(IS::InstrumentSampling) = get_vza.(IS.scenes)
 get_nir(IS::InstrumentSampling) = get_nir.(IS.scenes)
 get_vis(IS::InstrumentSampling) = get_vis.(IS.scenes)
 get_sif(IS::InstrumentSampling) = get_sif.(IS.scenes)
+get_sif_truth(IS::InstrumentSampling) = get_sif_truth.(IS.scenes)
 get_mode(IS::InstrumentSampling) = get_mode.(IS.scenes)
 get_ppfd(IS::InstrumentSampling) = get_ppfd.(IS.scenes)
 get_reflectance(IS::InstrumentSampling) = get_reflectance.(IS.scenes)

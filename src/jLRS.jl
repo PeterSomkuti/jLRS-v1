@@ -4,6 +4,7 @@ module jLRS
 using Printf
 
 # third party libraries
+using Distributions
 using HDF5
 using Proj4
 using Glob
@@ -11,10 +12,14 @@ using AstroLib
 using DataFrames
 using Dates
 using LinearAlgebra
+using Random
 using SatelliteToolbox
 using SQLite
 using SparseArrays
 using StaticArrays
+
+
+Random.seed!(123456)
 
 # Type definitions required by the rest of the module
 include("types.jl")
