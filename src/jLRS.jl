@@ -19,7 +19,11 @@ using SparseArrays
 using StaticArrays
 
 
-Random.seed!(123456)
+jLRS_seed = 123456
+# Seed the generator at the beginning. So the *same* code with the *same* inputs
+# will always produce the same numbers. If even one parameter changes, we will
+# get different results!
+Random.seed!(jLRS_seed)
 
 # Type definitions required by the rest of the module
 include("types.jl")

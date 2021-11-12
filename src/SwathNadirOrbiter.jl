@@ -4,6 +4,11 @@ tropomi_tle_string = """
        2 42969  98.7381 133.0236 0001130  90.2950 269.8356 14.19543373194087
        """
 
+function CO2M_uncertainty_function(TOA)
+
+    return 0.068055560 + 0.0017075595 * TOA - 1.0989804e-5 * TOA^2 + 2.5627241e-8 * TOA^3
+
+end
 
 
 function intersect_with_wgs84!(
@@ -38,10 +43,12 @@ function NadirSwathOrbiterSampling(
     N_pixel::Integer,
     exposure_time::Real,
     uncertainty_function::Function;
-    instrument::String="instrument"
+    instrument::String="instrument",
+    return_only_locations::Bool=false,
     )
 
     locarray = Geolocation[]
+    loctimearray = GeolocationTime[]
     scenearray = Scene[]
 
     #wgs84_a = 6378137.0 # m
@@ -111,22 +118,28 @@ function NadirSwathOrbiterSampling(
     xy = lonlat2xy([Float64(target_lon), Float64(target_lat)], wgs84)
     r = radius * 1000.0 * 1.10 # Add x percent as buffer, radius is given in [km] but we need [m]
 
-    north = xy2lonlat(geod_destination(xy, 0.0, r, wgs84), wgs84)
-    east = xy2lonlat(geod_destination(xy, 90.0, r, wgs84), wgs84)
-    south = xy2lonlat(geod_destination(xy, 180.0, r, wgs84), wgs84)
-    west = xy2lonlat(geod_destination(xy, 270.0, r, wgs84), wgs84)
+    # If the user only wants location arrays, we can skip this portion
+    # needed for the construction of SIF scenes.
+    if ~return_only_locations
 
-    lon_min = minimum([west[1], south[1]])
-    lat_min = minimum([west[2], south[2]])
-    lon_max = maximum([east[1], north[1]])
-    lat_max = maximum([east[2], north[2]])
+        north = xy2lonlat(geod_destination(xy, 0.0, r, wgs84), wgs84)
+        east = xy2lonlat(geod_destination(xy, 90.0, r, wgs84), wgs84)
+        south = xy2lonlat(geod_destination(xy, 180.0, r, wgs84), wgs84)
+        west = xy2lonlat(geod_destination(xy, 270.0, r, wgs84), wgs84)
 
-    vnp_sd = create_VNP_SD_from_locbounds(
-        lon_min,
-        lat_min,
-        lon_max,
-        lat_max
-    )
+        lon_min = minimum([west[1], south[1]])
+        lat_min = minimum([west[2], south[2]])
+        lon_max = maximum([east[1], north[1]])
+        lat_max = maximum([east[2], north[2]])
+
+        vnp_sd = create_VNP_SD_from_locbounds(
+            lon_min,
+            lat_min,
+            lon_max,
+            lat_max
+        )
+
+    end
 
 
     # this does not create a copy, however if you add a time period
@@ -278,7 +291,10 @@ function NadirSwathOrbiterSampling(
             target_lon, target_lat
         )
 
-        if distance_ss_to_ROI_center - radius > distance_swath
+        # If our target location is too far away from this particular swath, just
+        # move on to the next one. If the user wants locations, then skip this check
+        # as well.
+        if (distance_ss_to_ROI_center - radius > distance_swath) & ~return_only_locations
             continue
         end
 
@@ -308,47 +324,59 @@ function NadirSwathOrbiterSampling(
 
             this_loc = Geolocation(rad2deg(this_lon), rad2deg(this_lat))
 
-            # This footprint is indeed within our requested target
-            if check_location_within_radius(target_lon, target_lat, radius, this_loc)
 
+            if return_only_locations
+                # If the user only wants locations, push the current location into the array
+                # and move on.
                 this_loctime = GeolocationTime(this_loc, current_time)
+                push!(loctimearray, this_loctime)
 
-                # solar azimuth (saa) at this point unused!
-                this_sza, this_saa = calculate_solar_angles(this_loctime)
+            else
 
-                # If we are looking at nighttime - skip
-                if isnan(this_sza) | (this_sza > 90.0)
-                    continue
+                # If the user wants the full SIF scene, do necessary calculations here.
+
+                # This footprint is indeed within our requested target
+                if check_location_within_radius(target_lon, target_lat, radius, this_loc)
+
+                    this_loctime = GeolocationTime(this_loc, current_time)
+
+                    # solar azimuth (saa) at this point unused!
+                    this_sza, this_saa = calculate_solar_angles(this_loctime)
+
+                    # If we are looking at nighttime - skip
+                    if isnan(this_sza) | (this_sza > 90.0)
+                        continue
+                    end
+
+                    # Calculate viewing zenith angles
+                    # This should be the angle between the vector pointing
+                    # from measurement location (r_intersections) and the
+                    # satellite position (r_itrf) in ECEF, and the measurement location
+                    # and the normal (going from earth center to measurement location)
+
+                    r_norm = normalize(r_intersection)
+                    r_loc_to_sat_norm = normalize(r_itrf - r_intersection)
+
+                    _tmp = dot(r_loc_to_sat_norm, r_norm)
+                    if (_tmp > 1) & (_tmp < 1 + 1e-6)
+                        _tmp = 1.0
+                    end
+
+                    this_vza = rad2deg(acos(_tmp))
+
+                    this_scene = create_SIF_scene(
+                        instrument,
+                        "nadir",
+                        this_loctime,
+                        this_vza,
+                        uncertainty_function,
+                        vnp_sd
+                    )
+
+                    push!(locarray, this_loc)
+                    push!(scenearray, this_scene)
+
                 end
-
-
-                # Calculate viewing zenith angles
-                # This should be the angle between the vector pointing
-                # from measurement location (r_intersections) and the
-                # satellite position (r_itrf) in ECEF, and the measurement location
-                # and the normal (going from earth center to measurement location)
-
-                r_norm = normalize(r_intersection)
-                r_loc_to_sat_norm = normalize(r_itrf - r_intersection)
-
-                _tmp = dot(r_loc_to_sat_norm, r_norm)
-                if (_tmp > 1) & (_tmp < 1 + 1e-6)
-                    _tmp = 1.0
-                end
-
-                this_vza = rad2deg(acos(_tmp))
-
-                this_scene = create_SIF_scene(
-                    instrument,
-                    "nadir",
-                    this_loctime,
-                    this_vza,
-                    uncertainty_function,
-                    vnp_sd
-                )
-
-                push!(locarray, this_loc)
-                push!(scenearray, this_scene)
 
             end
 
@@ -364,12 +392,21 @@ function NadirSwathOrbiterSampling(
 
     end
 
-    return NadirSwathOrbiterSampling(
-        "",
-        ["instrument"],
-        locarray,
-        scenearray
-    )
+
+    if return_only_locations
+
+        return loctimearray
+
+    else
+
+        return NadirSwathOrbiterSampling(
+            "",
+            ["instrument"],
+            locarray,
+            scenearray
+        )
+
+    end
 
 
 end

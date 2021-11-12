@@ -125,10 +125,29 @@ function photosynthetic_yields(
     Tin, # input leaf temp, C
     Cin, # input mesophyll CO2, ubar
     Oin;  # input atmospheric O2, mbar
-    Abs=0.85, # this is fAPAR essentially (?)
-    alpha_opt="static"
+    Abs=0.85, # this is fAPAR essentially (?), mol PPFD absorbed by the leaf, PPFD incident / mol absorbed
+    alpha_opt="static",
+    beta = 0.52, # mol PPFD absorbed by PSII, PPFD / mol absorbed
+    CB6F = (350.0 / 300.0) / 1e6, # Cyt b6f density, mol sites per m2
+    RUB = (100.0 / 3.6) / 1e6, # Rubisco density, mol sites per m2
+    Rds = 0.01, # dark respiration scalar
+    Kf = 0.05e9, # Rate constant for fluorescence at PSII and PSI, 1/s
+    Kd = 0.55e9, # Rate constant for constitutive heat loss at PSII and PSI, 1/s
+    Kp1 = 14.5e9, # Rate constant for photochemistry at PSI, 1/s
+    Kp2 = 4.5e9,  # Rate constant for photochemistry at PSII, 1/s
+    Kn1 = 14.5e9, # Rate constant for regulated heat loss at PSI, 1/s
+    Ku2 = 0.0e9,  # Rate constant for exciton sharing PSII, 1/s 
+    kq = 300.0, # Cyt b6f kcat for PQH2, mol mol / e- / sites / s
+    nl = 0.75,  # ATP per e- in linear flow, ATP/e-
+    nc = 1.00,  # ATP per e- in cyclic flow, ATP/e-
+    kc = 3.6,   # Rubisco kcat for CO2, mol CO2 mol / sites / s
+    ko = 3.6 * 0.27, # Rubisco kcat for O2, mol O2 mol / sites / s
+    Kc = 260.0 / 1e6,  # Rubisco Km for CO2, bar
+    Ko = 179000.0 / 1e6, # Rubisco Km for O2, bar
+    theta1 = 1., # curvature parameter for Aj/Ac transition
+    eps1 = 0., # PSI transfer function
+    eps2 = 1. # PSII transfer function
 )
-
 
     @assert (alpha_opt == "static") | (alpha_opt == "dynamic") "Bad parameter!"
 
@@ -137,42 +156,6 @@ function photosynthetic_yields(
     T = Tin
     C = Cin / 1e6 # mesophyll CO2 partial pressure, bar
     O = Oin / 1e3 # atmospheric O2 partial pressure, O2
-
-    #Abs = 0.85 # mol PPFD absorbed by the leaf, PPFD incident / mol absorbed
-
-    beta = 0.52 # mol PPFD absorbed by PSII, PPFD / mol absorbed
-
-    CB6F = (350.0 / 300.0) / 1e6 # Cyt b6f density, mol sites per m2
-    CB6F = 1.2 / 1e6
-
-    RUB = (100.0 / 3.6) / 1e6 # Rubisco density, mol sites per m2
-    RUB = 27.8 / 1e6
-
-    Rds = 0.01 # dark respiration scalar
-
-    Kf = 0.05e9 # Rate constant for fluorescence at PSII and PSI, 1/s
-    Kd = 0.55e9 # Rate constant for constitutive heat loss at PSII and PSI, 1/s
-
-    Kp1 = 14.5e9 # Rate constant for photochemistry at PSI, 1/s
-    Kp2 = 4.5e9  # Rate constant for photochemistry at PSII, 1/s
-
-    Kn1 = 14.5e9 # Rate constant for regulated heat loss at PSI, 1/s
-    Ku2 = 0.0e9  # Rate constant for exciton sharing PSII, 1/s 
-
-    kq = 300.0 # Cyt b6f kcat for PQH2, mol mol / e- / sites / s
-
-    nl = 0.75  # ATP per e- in linear flow, ATP/e-
-    nc = 1.00  # ATP per e- in cyclic flow, ATP/e-
-
-    kc = 3.6   # Rubisco kcat for CO2, mol CO2 mol / sites / s
-    ko = 3.6 * 0.27 # Rubisco kcat for O2, mol O2 mol / sites / s
-
-    Kc = 260.0 / 1e6  # Rubisco Km for CO2, bar
-    Ko = 179000.0 / 1e6 # Rubisco Km for O2, bar
-
-    theta1 = 1. # curvature parameter for Aj/Ac transition
-    eps1 = 0. # PSI transfer function
-    eps2 = 1. # PSII transfer function
 
     # Calculations
 
@@ -437,8 +420,18 @@ function create_SIF_scene(
     # The function needed to calculate the uncertainty must be supplied
     this_sif_ucert = uncertainty_function(this_TOA_radiance)
 
+    # Scale SIF and uncertainty values up for 740nm
+    # Note that the native calculation is still done for ~755nm,
+    # however the resultws are scaled up to be comparable to e.g. TROPOMI
+
+    this_sif *= 1.56
+    this_sif_ucert *= 1.56
+
+
     # Noisified SIF
     if this_sif_ucert > 0.
+        # Apply global seed variable to sampling
+        # Random.seed!(jLRS_seed)
         this_measured_sif = rand(Normal(this_sif, this_sif_ucert))
     else
         this_measured_sif = this_sif
